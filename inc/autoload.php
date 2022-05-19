@@ -25,7 +25,7 @@ spl_autoload_register(
 
 		$file_class_name = $type . '-' . strtolower( str_replace( '_', '-', array_pop( $parse_class ) ) ) . '.php';
 		$class           = implode( DIRECTORY_SEPARATOR, $parse_class ) . DIRECTORY_SEPARATOR . $file_class_name;
-		$path            = Rgbcode_menu_PLUGIN_DIR . DIRECTORY_SEPARATOR . $class;
+		$path            = RGBCODE_MENU_PLUGIN_DIR . DIRECTORY_SEPARATOR . $class;
 
 		if ( file_exists( $path ) ) {
 			require_once $path;

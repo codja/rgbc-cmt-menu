@@ -18,15 +18,15 @@ class Setup {
 	public function enqueue_admin() {
 		wp_enqueue_style(
 			'rgbcode_map_style_admin',
-			RGBCODE_MENU_PLUGIN_DIR . 'assets/js/admin/rgbcode_menu.css',
+			RGBCODE_MENU_PLUGIN_URL . 'assets/css/admin/rgbcode-menu.min.css',
 			array(),
-			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/js/rgbcode_menu.css' )
+			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/css/admin/rgbcode-menu.min.css' )
 		);
 		wp_enqueue_script(
 			'rgbcode_map_script_admin',
-			RGBCODE_MENU_PLUGIN_DIR . 'assets/js/admin/rgbcode_menu.js',
+			RGBCODE_MENU_PLUGIN_URL . 'assets/js/admin/rgbcode-menu.min.js',
 			array(),
-			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/js/rgbcode_menu.js' ),
+			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/js/admin/rgbcode-menu.min.js' ),
 			true
 		);
 	}
@@ -34,15 +34,15 @@ class Setup {
 	public function enqueue_front() {
 		wp_enqueue_style(
 			'rgbcode_map_style',
-			RGBCODE_MENU_PLUGIN_DIR . 'assets/js/front/rgbcode_menu.css',
+			RGBCODE_MENU_PLUGIN_URL . 'assets/css/front/rgbcode-menu.min.css',
 			array(),
-			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/js/rgbcode_menu.css' )
+			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/css/front/rgbcode-menu.min.css' )
 		);
 		wp_enqueue_script(
 			'rgbcode_map_script',
-			RGBCODE_MENU_PLUGIN_DIR . 'assets/js/front/rgbcode_menu.js',
+			RGBCODE_MENU_PLUGIN_URL . 'assets/js/front/rgbcode-menu.min.js',
 			array(),
-			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/js/rgbcode_menu.js' ),
+			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/js/front/rgbcode-menu.min.js' ),
 			true
 		);
 	}

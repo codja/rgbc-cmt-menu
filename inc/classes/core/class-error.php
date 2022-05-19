@@ -12,7 +12,7 @@ class Error {
 		error_log(
 			'[' . gmdate( 'Y-m-d H:i:s' ) . '] Error: {' . $title . ':' . $error . "} \n===========\n",
 			3,
-			Rgbcode_menu_PLUGIN_DIR . 'errors.log'
+			RGBCODE_MENU_PLUGIN_DIR . 'errors.log'
 		);
 	}
 }
