@@ -4,6 +4,7 @@ namespace Rgbcode_menu;
 
 use Rgbcode_menu\classes\core\Error;
 use Rgbcode_menu\classes\core\Setup;
+use Rgbcode_menu\classes\menu\Menu;
 use Rgbcode_menu\classes\plugins\ACF;
 
 // find any classes from your code
@@ -41,3 +42,4 @@ if ( function_exists( '__autoload' ) ) {
 Setup::instance();
 Error::instance();
 ACF::instance();
+new Menu();

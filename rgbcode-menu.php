@@ -48,7 +48,6 @@ class Rgbcode_menu {
 		$plugin = $_REQUEST['plugin'] ?? ''; // phpcs:ignore
 		check_admin_referer( "activate-plugin_{$plugin}" );
 
-
 		flush_rewrite_rules();
 	}
 
@@ -81,7 +80,7 @@ class Rgbcode_menu {
 	 * Delete all options that the plugin has created
 	*/
 	private static function remove_options(): void {
-		$options     = [];
+		$options = [];
 
 		foreach ( $options as $option ) {
 			delete_option( $option );

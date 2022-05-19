@@ -12,7 +12,7 @@ class Setup {
 		// Load our frontend css and js
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_front' ] );
-		//      add_filter( 'show_admin_bar', '__return_false' );
+		add_filter( 'show_admin_bar', '__return_false' );
 	}
 
 	public function enqueue_admin() {
