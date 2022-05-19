@@ -1,0 +1,7 @@
+.idea
+assets
+**/node_modules
+_dev/package-lock.json
+vendor
+.DS_Store
+**/env.js

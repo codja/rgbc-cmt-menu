@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "es6": true,
+    "browser": true,
+    "commonjs": true,
+    "node": true
+  },
+  "rules": {
+    "semi": "off",
+    "new-cap": "off",
+    "require-jsdoc": "off",
+    "no-unused-vars": "off",
+    "no-debugger": "off",
+    "space-before-function-paren": "off",
+    "no-invalid-this": "off",
+    "no-undef": "off",
+    "no-console": "off"
+  },
+  "extends": [ "plugin:@wordpress/eslint-plugin/recommended" ]
+}

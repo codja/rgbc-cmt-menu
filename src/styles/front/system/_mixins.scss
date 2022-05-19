@@ -1,0 +1,53 @@
+@mixin font( $font-family, $style, $weight, $file-path ) {
+
+	@font-face {
+		font-family: $font-family;
+		font-weight: $weight;
+		font-style: $style;
+		font-display: swap;
+		src: url("#{$file-path}.woff") format("woff"), url("#{$file-path}.woff2") format("woff2");
+	}
+}
+
+@mixin media($min, $max) {
+
+	@if ($min == 0) {
+
+		@media (max-width: $max) {
+			@content;
+		}
+	} @else if ($max == 0) {
+
+		@media (min-width: $min) {
+			@content;
+		}
+	} @else {
+
+		@media (min-width: $min) and (max-width: $max) {
+			@content;
+		}
+	}
+}
+
+@mixin media_min( $min ) {
+
+	@media (min-width: $min) {
+		@content;
+	}
+}
+
+@mixin media_max( $max ) {
+
+	@media (max-width: $max) {
+		@content;
+	}
+}
+
+@mixin for_ie() {
+
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+		@content;
+	}
+}
+
+
