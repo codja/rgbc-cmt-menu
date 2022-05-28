@@ -1,0 +1,17 @@
+.rgbcode-menu-header {
+	background-color: #0063ff;
+
+	&__container {
+		padding-top: 15px;
+		padding-inline: 15px;
+		max-width: 1920px;
+		margin: 0 auto;
+		display: flex;
+		//justify-content: space-between;
+	}
+
+	&__logo {
+		max-width: 200px;
+		margin-top: 4px;
+	}
+}

@@ -1,0 +1,48 @@
+.rgbcode-menu-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 99999999;
+
+	display: none;
+	justify-content: center;
+	align-items: center;
+
+	background-color: rgba(0, 0, 0, 0.9);
+
+	&__window {
+		position: relative;
+		width: 70vw;
+		height: 70vh;
+		margin: 0 1em;
+		//padding: 2.3em 7%;
+
+		font-size: 20px;
+		text-align: center;
+		//background-color: #fff;
+		color: #808080;
+		border-radius: 10px;
+	}
+
+	&__close[type=button] {
+		position: absolute;
+		top: -35px;
+		right: 10px;
+
+		width: 30px;
+		height: 30px;
+		padding: 0;
+
+		border: none;
+
+		&:hover {
+			background-color: transparent;
+		}
+	}
+
+	&__close-shape {
+		fill: #0062ff;
+	}
+}

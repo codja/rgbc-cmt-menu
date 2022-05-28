@@ -1,5 +1,10 @@
-import { initExample } from './components/example';
+import { initLinks } from './components/links';
+import { initVideo } from "./components/modalVideo";
 
 document.addEventListener( 'DOMContentLoaded', () => {
-	initExample();
+	if ( ! document.getElementById( 'rgbcode-menu-header' ) ) {
+		return;
+	}
+	initLinks();
+	initVideo();
 } );

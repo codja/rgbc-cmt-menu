@@ -2,11 +2,7 @@
 
 namespace Rgbcode_menu\classes\core;
 
-use Rgbcode_menu\traits\Singleton;
-
 class Setup {
-
-	use Singleton;
 
 	public function __construct() {
 		// Load our frontend css and js
@@ -17,15 +13,15 @@ class Setup {
 
 	public function enqueue_admin() {
 		wp_enqueue_style(
-			'rgbcode_map_style_admin',
+			'rgbcode_menu_style_admin',
 			RGBCODE_MENU_PLUGIN_URL . 'assets/css/admin/rgbcode-menu.min.css',
-			array(),
+			[],
 			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/css/admin/rgbcode-menu.min.css' )
 		);
 		wp_enqueue_script(
-			'rgbcode_map_script_admin',
+			'rgbcode_menu_script_admin',
 			RGBCODE_MENU_PLUGIN_URL . 'assets/js/admin/rgbcode-menu.min.js',
-			array(),
+			[],
 			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/js/admin/rgbcode-menu.min.js' ),
 			true
 		);
@@ -33,15 +29,15 @@ class Setup {
 
 	public function enqueue_front() {
 		wp_enqueue_style(
-			'rgbcode_map_style',
+			'rgbcode_menu_style',
 			RGBCODE_MENU_PLUGIN_URL . 'assets/css/front/rgbcode-menu.min.css',
-			array(),
+			[],
 			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/css/front/rgbcode-menu.min.css' )
 		);
 		wp_enqueue_script(
-			'rgbcode_map_script',
+			'rgbcode_menu_script',
 			RGBCODE_MENU_PLUGIN_URL . 'assets/js/front/rgbcode-menu.min.js',
-			array(),
+			[],
 			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/js/front/rgbcode-menu.min.js' ),
 			true
 		);
