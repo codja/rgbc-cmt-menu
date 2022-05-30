@@ -14,9 +14,9 @@ export function initLinks() {
 		} );
 	} );
 
-	// document.querySelector( '.rgbcode-menu' ).addEventListener( 'mouseleave', ( e ) => {
-	// 	setTimeout( () => {
-	// 		deselectLinks();
-	// 	}, 300 );
-	// } );
+	document.querySelector( '.rgbcode-menu' ).addEventListener( 'mouseleave', ( e ) => {
+		setTimeout( () => {
+			deselectLinks();
+		}, 300 );
+	} );
 }

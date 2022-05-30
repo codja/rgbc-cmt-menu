@@ -1,0 +1,47 @@
+.rgbcode-menu-hamburger[type="button"] {
+	display: none;
+	border: none;
+
+	@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+		display: block;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		border: none;
+		background-color: transparent;
+		outline: none;
+	}
+
+	span {
+		position: relative;
+
+		height: 4px;
+		width: 25px;
+		padding: 0;
+		display: block;
+
+		background-color: #fff;
+		border-radius: 3px;
+
+		&::after,
+		&::before {
+			position: relative;
+			content: '';
+			display: block;
+			height: 4px;
+			background-color: #fff;
+			border-radius: 3px;
+		}
+
+		&::before {
+			top: 8px;
+		}
+
+		&::after {
+			bottom: 12px;
+		}
+	}
+
+}

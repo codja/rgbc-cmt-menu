@@ -4,25 +4,59 @@ namespace Rgbcode_menu\classes\menu;
 
 class Menu {
 
+	const LOCATION_NAME = 'rgbc_primary';
+
 	public function __construct() {
 		register_nav_menus(
 			array(
-				'rgbc_primary' => esc_html__( 'Rgbcode menu Primary', 'rgbcode-menu' ),
+				self::LOCATION_NAME => esc_html__( 'Rgbcode menu Primary', 'rgbcode-menu' ),
 			)
 		);
 		add_action( 'wp_body_open', [ $this, 'init_menu' ] );
 	}
 
 	public function init_menu() {
-		$logo = get_custom_logo();
+		$menu_id = $this->get_menu_id();
 		?>
 		<header id="rgbcode-menu-header" class="rgbcode-menu-header">
 			<div class="rgbcode-menu-header__container">
-				<?php if ( $logo ) : ?>
-				<div class="rgbcode-menu-header__logo">
-					<?php echo wp_kses_post( $logo ); ?>
-				</div>
-				<?php endif; ?>
+				<button class="rgbcode-menu-hamburger" type="button">
+					<span></span>
+				</button>
+
+				<div class="rgbcode-menu-header__wrapper">
+					<?php
+					$image        = $this->get_logo();
+					$mobile_image = get_field( 'rgbc_menu_mobile_logo', "menu_$menu_id" );
+					if ( $image ) :
+						?>
+					<a class="rgbcode-menu-header__logo" href="<?php echo esc_url( home_url() ); ?>">
+						<picture>
+							<source
+								srcset="<?php echo esc_url( $mobile_image['url'] ); ?>" media="(max-width: 1280px)">
+							<img src="<?php echo esc_url( reset( $image ) ); ?>"
+								width="<?php echo esc_attr( $image[1] ); ?>"
+								height="<?php echo esc_attr( $image[2] ); ?>" alt="cmtrading">
+						</picture>
+					</a>
+					<?php endif; ?>
+
+					<?php
+					$livechat = get_field( 'rgbc_menu_live_chat_button', "menu_$menu_id" );
+					if ( $livechat ) :
+						?>
+					<div class="rgbcode-menu-header__livechat cm_livechat">
+						<a href="https://direct.lc.chat/9761490"></a>
+					</div>
+					<?php endif; ?>
+
+					<?php
+					$login_btn = get_field( 'rgbc_menu_login_button', "menu_$menu_id" );
+					if ( $login_btn ) :
+						?>
+						<a href="/mobile/" class="rgbcode-menu-header__login rgbcode-menu-button">Login</a>
+					<?php endif; ?>
+				</div> <!-- ./rgbcode-menu-header__wrapper -->
 				<?php
 				wp_nav_menu(
 					[
@@ -30,7 +64,7 @@ class Menu {
 						'container_class' => 'rgbcode-menu-header__menu',
 						'menu_class'      => 'rgbcode-menu',
 						'menu_id'         => 'rgbcode-menu',
-						'theme_location'  => 'rgbc_primary',
+						'theme_location'  => self::LOCATION_NAME,
 						'fallback_cb'     => '__return_empty_string',
 						'depth'           => 3,
 						'walker'          => new Rgbcode_Walker_Nav_Menu(),
@@ -49,6 +83,16 @@ class Menu {
 			</div>
 		</div>
 		<?php
+	}
+
+	private function get_logo() {
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+		return wp_get_attachment_image_src( $custom_logo_id, 'full' );
+	}
+
+	private function get_menu_id() {
+		$locations = get_nav_menu_locations();
+		return $locations[ self::LOCATION_NAME ];
 	}
 
 

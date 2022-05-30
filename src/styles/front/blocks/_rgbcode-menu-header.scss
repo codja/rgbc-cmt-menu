@@ -7,11 +7,55 @@
 		max-width: 1920px;
 		margin: 0 auto;
 		display: flex;
-		//justify-content: space-between;
+
+		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			padding-bottom: 15px;
+			justify-content: space-between;
+		}
+	}
+
+	&__wrapper {
+
+		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			display: flex;
+			width: 50%;
+			justify-content: space-between;
+			align-items: center;
+		}
 	}
 
 	&__logo {
 		max-width: 200px;
 		margin-top: 4px;
+		display: block;
+
+		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			margin-top: 0;
+			width: 26px;
+			height: 31px;
+		}
+	}
+
+	&__livechat {
+
+		a {
+			transform: initial;
+		}
+	}
+
+	&__livechat,
+	&__login {
+		display: none;
+
+		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			display: block;
+		}
+	}
+
+	&__menu {
+
+		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			display: none;
+		}
 	}
 }

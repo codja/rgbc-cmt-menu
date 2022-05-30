@@ -108,10 +108,6 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 			return parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
 		}
 
-		//Get the 'last' of the siblings.
-		$last_child            = array_pop( $siblings );
-		$id_field              = $this->db_fields['id'];
-		$is_enable_custom_col  = get_field( 'rgbc_menu_custom_area_column', $element->menu_item_parent );
 		$is_enable_custom_link = false;
 		if ( $depth === 2 ) {
 			$parent_post           = get_post( $element->menu_item_parent );
@@ -120,6 +116,10 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		}
 
 		//If current element is the last of the siblings, add class
+		//Get the 'last' of the siblings.
+		$last_child           = array_pop( $siblings );
+		$id_field             = $this->db_fields['id'];
+		$is_enable_custom_col = get_field( 'rgbc_menu_custom_area_column', $element->menu_item_parent );
 		if ( $element->$id_field === $last_child->$id_field ) {
 			$classes = empty( $element->classes ) ? array() : (array) $element->classes;
 			if ( $is_enable_custom_col && $depth === 1 ) {
@@ -128,7 +128,7 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 				$this->custom_area = get_field( 'rgbc_menu_custom_area_settings', $element->menu_item_parent );
 			}
 
-			if ( $is_enable_custom_link && $depth === 2 && get_post_meta( $element->menu_item_parent, 'is_last_column', true ) ) {
+			if ( $is_enable_custom_link && get_post_meta( $element->menu_item_parent, 'is_last_column', true ) ) {
 				$classes[] = 'rgbcode-menu__last';
 			}
 			$element->classes = $classes;
