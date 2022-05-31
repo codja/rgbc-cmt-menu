@@ -8,6 +8,18 @@
 		font-size: 14px;
 	}
 
+	@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+		width: 275px;
+		margin: 7vh 0;
+		flex-direction: column;
+		justify-content: flex-start;
+		color: #000;
+	}
+
+	@include media_max( map-get( $breaks, 'tablet' ) ) {
+		padding-inline-start: 0;
+	}
+
 	ul {
 		list-style: none;
 	}
@@ -26,18 +38,31 @@
 		&-link {
 			color: #fff;
 			text-transform: uppercase;
+
+			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+				color: #000;
+				font-weight: bold;
+			}
 		}
 
 		&-menu-item {
 			position: relative;
-			padding-top: 17px;
-			padding-bottom: 23px;
 			padding-inline: 20px 20px;
 			display: flex;
 			flex-direction: column;
+			padding-bottom: 0.4em;
+
+			@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+				padding-top: 17px;
+				padding-bottom: 23px;
+			}
 
 			&.menu-item-has-children {
 				padding-inline-end: 40px;
+
+				@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+					padding-inline-start: 0;
+				}
 
 				&::after {
 					content: '';
@@ -56,6 +81,10 @@
 					border-right: 1px solid;
 
 					color: #fff;
+
+					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+						color: #000;
+					}
 				}
 			}
 
@@ -65,7 +94,10 @@
 			}
 
 			&.rgbcode-menu-active {
-				background-color: #004ECC;
+
+				@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+					background-color: #004ECC;
+				}
 
 				&::after {
 					top: 42%;
@@ -203,6 +235,25 @@
 				}
 			}
 		}
+
+	}
+
+	&-only {
+
+		&-desktop {
+
+			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+				display: none;
+			}
+		}
+
+		&-mobile {
+
+			@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+				display: none;
+			}
+		}
+
 
 	}
 }

@@ -55,11 +55,11 @@ const setupVideo = ( video ) => {
 }
 
 export function initVideo() {
-	let videos = document.querySelectorAll('.rgbcode-menu-video');
+	let videos = document.querySelectorAll( '.rgbcode-menu-video' );
 
 	if ( ! videos.length ) {
 		return;
 	}
 
-	videos.forEach( video => setupVideo(video) );
+	videos.forEach( video => setupVideo( video ) );
 }

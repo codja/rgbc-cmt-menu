@@ -1,6 +1,12 @@
 .rgbcode-menu-header {
 	background-color: #0063ff;
 
+	//position: fixed;
+	//top: 0;
+	//left: 0;
+	//width: 100%;
+	//z-index: 99;
+
 	&__container {
 		padding-top: 15px;
 		padding-inline: 15px;
@@ -55,7 +61,91 @@
 	&__menu {
 
 		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			//display: none;
+
+			position: absolute;
+			top: 0;
+			left: -100%;
+			z-index: 10;
+
+			width: 50vw;
+			height: 100vh;
+
+			background-color: #fff;
+			transition: left .7s linear;
+		}
+
+		@include media_max( map-get( $breaks, 'mobile' ) ) {
+			width: 90vw;
+		}
+
+		&-wrap {
+
+			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+				padding-inline-start: 40px;
+			}
+
+		}
+	}
+
+	&__open-logo {
+		padding-top: 1em;
+		padding-bottom: 1em;
+		padding-inline: 1em;
+
+		@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
 			display: none;
 		}
+	}
+
+	&__open-btn {
+		max-width: 37%;
+		margin-bottom: 2vh;
+		text-align: center;
+	}
+
+	&__close {
+		position: absolute;
+		top: 18px;
+		right: 0;
+		z-index: 15;
+
+		border: none;
+
+		@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+			display: none;
+		}
+
+		&::before,
+		&::after {
+			content: '';
+			display: block;
+			width: 35px;
+			height: 1px;
+			background-color: #000;
+		}
+
+		&::before {
+			transform: rotate(44deg);
+		}
+
+		&::after {
+			transform: rotate(316deg);
+		}
+
+		&:hover,
+		&:active,
+		&:focus {
+			border: none;
+			background-color: transparent;
+			outline: none;
+		}
+	}
+
+	&__link {
+		text-decoration: underline;
+		color: #0063ff;
+		font-weight: 600;
+		font-size: 0.85em;
 	}
 }

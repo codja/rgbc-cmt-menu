@@ -90,9 +90,13 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		// We don't want to do anything at the 'top level'.
 		if ( 0 === $depth ) {
 			$reverse_block = get_field( 'rgbc_menu_reverse_block', $element->ID );
+			$hide_mobile   = get_field( 'rgbc_menu_hide_on_mobile', $element->ID );
 			$classes       = empty( $element->classes ) ? array() : (array) $element->classes;
 			if ( $reverse_block ) {
 				$classes[] = 'rgbcode-menu__reverse-block';
+			}
+			if ( $hide_mobile ) {
+				$classes[] = 'rgbcode-menu-only-desktop';
 			}
 			$element->classes = $classes;
 			return parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );

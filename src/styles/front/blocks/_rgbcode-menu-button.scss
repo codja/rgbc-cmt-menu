@@ -3,5 +3,11 @@
 	color: #fff;
 	border: 2px solid #fff;
 	border-radius: 50px;
-	padding: 5px 10px;
+	padding: 8px 10px;
+
+	&_blue {
+		border-color: #0063ff;
+		color: #0063ff;
+		font-weight: 600;
+	}
 }

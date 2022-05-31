@@ -57,20 +57,84 @@ class Menu {
 						<a href="/mobile/" class="rgbcode-menu-header__login rgbcode-menu-button">Login</a>
 					<?php endif; ?>
 				</div> <!-- ./rgbcode-menu-header__wrapper -->
-				<?php
-				wp_nav_menu(
-					[
-						'container'       => 'nav',
-						'container_class' => 'rgbcode-menu-header__menu',
-						'menu_class'      => 'rgbcode-menu',
-						'menu_id'         => 'rgbcode-menu',
-						'theme_location'  => self::LOCATION_NAME,
-						'fallback_cb'     => '__return_empty_string',
-						'depth'           => 3,
-						'walker'          => new Rgbcode_Walker_Nav_Menu(),
-					]
-				);
-				?>
+
+				<nav class="rgbcode-menu-header__menu">
+
+					<?php
+					$mobile_opened_logo = get_field( 'rgbc_menu_mobile_opened_logo', "menu_$menu_id" );
+					if ( $mobile_opened_logo ) :
+						?>
+					<img class="rgbcode-menu-header__open-logo" src="<?php echo esc_url( $mobile_opened_logo['url'] ); ?>" width="230" alt="cmtrading">
+					<?php endif; ?>
+
+					<button class="rgbcode-menu-header__close"></button>
+
+					<div class="rgbcode-menu-header__menu-wrap">
+						<?php
+						wp_nav_menu(
+							[
+								'container'      => false,
+								'menu_class'     => 'rgbcode-menu',
+								'menu_id'        => 'rgbcode-menu',
+								'theme_location' => self::LOCATION_NAME,
+								'fallback_cb'    => '__return_empty_string',
+								'depth'          => 3,
+								'walker'         => new Rgbcode_Walker_Nav_Menu(),
+							]
+						);
+						?>
+
+						<?php
+						$social_btns = get_field( 'rgbc_menu_social_buttons', "menu_$menu_id" );
+						if ( $social_btns ) :
+							?>
+							<div class="rgbcode-menu-social rgbcode-menu-only-mobile">
+							<?php
+							foreach ( $social_btns as $social_btn ) :
+								?>
+								<a
+									class="rgbcode-menu-social__item"
+									href="<?php echo esc_url( $social_btn['link'] ); ?>"
+								>
+									<img
+										class="rgbcode-menu-social__img"
+										src="<?php echo esc_url( $social_btn['icon']['url'] ); ?>"
+										alt="<?php echo esc_attr( $social_btn['icon']['alt'] ); ?>"
+										title="<?php echo esc_attr( $social_btn['icon']['title'] ); ?>"
+									>
+								</a>
+								<?php
+							endforeach;
+							?>
+							</div>
+							<?php
+						endif;
+						?>
+
+						<?php
+						$button = get_field( 'rgbc_menu_open_button', "menu_$menu_id" );
+						if ( $button ) :
+							?>
+							<a
+								class="rgbcode-menu-header__open-btn rgbcode-menu-button rgbcode-menu-button_blue rgbcode-menu-only-mobile"
+								href="<?php echo esc_url( $button['url'] ); ?>"
+								target="<?php echo esc_attr( $button['target'] ); ?>"
+							><?php echo esc_html( $button['title'] ); ?></a>
+						<?php endif; ?>
+
+						<?php
+						$link = get_field( 'rgbc_menu_open_link', "menu_$menu_id" );
+						if ( $link ) :
+							?>
+							<a
+								class="rgbcode-menu-header__link rgbcode-menu-only-mobile"
+								href="<?php echo esc_url( $button['url'] ); ?>"
+								target="<?php echo esc_attr( $button['target'] ); ?>"
+							><?php echo esc_html( $link['title'] ); ?></a>
+						<?php endif; ?>
+					</div>
+				</nav>
+
 			</div>
 		</header>
 		<div class="rgbcode-menu-modal">
@@ -90,7 +154,7 @@ class Menu {
 		return wp_get_attachment_image_src( $custom_logo_id, 'full' );
 	}
 
-	private function get_menu_id() {
+	private function get_menu_id(): int {
 		$locations = get_nav_menu_locations();
 		return $locations[ self::LOCATION_NAME ];
 	}

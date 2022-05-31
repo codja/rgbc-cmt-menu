@@ -6,6 +6,10 @@
 		display: block;
 	}
 
+	&.active ~ .rgbcode-menu-header__menu {
+		left: 0;
+	}
+
 	&:hover,
 	&:active,
 	&:focus {
