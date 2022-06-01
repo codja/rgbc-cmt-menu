@@ -6,7 +6,7 @@
 * Author: rgbcode
 * Author URI: https://rgbcode.com/
 * Version: 0.1
-* Text Domain: rgbcode-map
+* Text Domain: rgbcode-menu
 * Domain Path: /languages/
 */
 

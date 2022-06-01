@@ -148,4 +148,33 @@
 		font-weight: 600;
 		font-size: 0.85em;
 	}
+
+	&__back[type="button"] {
+		position: absolute;
+		bottom: 21px;
+		left: 15px;
+		z-index: 20;
+
+		display: none;
+		font-size: 0.95em;
+
+		color: #000;
+		border: none;
+
+		&.show {
+
+			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+				display: flex;
+			}
+		}
+
+		&:hover,
+		&:active,
+		&:focus {
+			color: #000;
+			border: none;
+			background-color: transparent;
+			outline: none;
+		}
+	};
 }
