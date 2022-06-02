@@ -26,6 +26,10 @@
 
 	&__editor {
 
+		@include media( map-get( $breaks, 'mobile' ), map-get( $breaks, 'desktop_sm' ) ) {
+			width: 70%;
+		}
+
 		a {
 			font-size: 0.85em;
 			text-decoration: underline;
@@ -124,7 +128,7 @@
 					transform: rotate(225deg);
 				}
 
-				& > .rgbcode-menu__second-lvl-menu {
+				& .rgbcode-menu__second-lvl-menu {
 					display: flex;
 				}
 			}
@@ -168,10 +172,20 @@
 					}
 				}
 
-				& > .rgbcode-menu__second-lvl-menu {
+				& .rgbcode-menu__second-lvl-menu {
 
 					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+						max-height: 70%;
 						flex-direction: column;
+						overflow-y: scroll;
+						mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+					}
+
+					&_no-mask {
+
+						@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+							mask-image: initial;
+						}
 					}
 				}
 
@@ -184,9 +198,12 @@
 					}
 				}
 
-				//& > .rgbcode-menu__second-lvl-menu-item {
-				//	padding-inline
-				//}
+				& > .rgbcode-menu-scrolldown {
+
+					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+						display: block;
+					}
+				}
 			}
 		}
 	}
@@ -208,13 +225,8 @@
 			display: none;
 			background-color: #fff;
 
-			@include media_max( map-get( $breaks, 'desktop' ) ) {
+			@include media( map-get( $breaks, 'desktop_sm' ), map-get( $breaks, 'desktop' ) ) {
 				top: 5em;
-			}
-
-			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
-				overflow-y: scroll;
-				max-height: 80%;
 			}
 
 			@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
@@ -238,8 +250,11 @@
 					width: 230px;
 				}
 
-				@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
-					margin-bottom: 1.5em;
+				&:not(.lang_bar_item) {
+
+					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+						margin-bottom: 1.5em;
+					}
 				}
 
 				&:first-child {
@@ -293,10 +308,13 @@
 			position: relative;
 			font-size: 0.85em;
 			align-self: flex-start;
-			margin-top: auto;
 			text-decoration: underline;
 			color: #000;
 			transition: all .3s ease;
+
+			@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+				margin-top: 60px;
+			}
 
 			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
 				position: absolute;

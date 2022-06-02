@@ -45,7 +45,7 @@ const menuItemsHandler = ( item, add = true ) => {
 export function initLinks() {
 	firstLvlLinks.forEach( item => {
 		item.addEventListener('click', (evt) => {
-			if ( detectTablet() ) {
+			if ( detectTablet() && ! item.parentElement.classList.contains( 'rgbcode-menu-active' ) ) {
 				evt.preventDefault();
 			}
 		});
@@ -62,6 +62,12 @@ export function initLinks() {
 		item.addEventListener( 'click', ( e ) => {
 			if ( detectTablet() && ( ! item.classList.contains( 'rgbcode-menu-active' ) || item.classList.contains( 'lang_bar_item' ) ) ) {
 				menuItemsHandler( item, false );
+				const secondMenu = item.querySelector( '.rgbcode-menu__second-lvl-menu' );
+				const isNotHaveScroll = secondMenu.scrollHeight <= secondMenu.clientHeight;
+				if ( isNotHaveScroll ) {
+					secondMenu.classList.add( 'rgbcode-menu__second-lvl-menu_no-mask' );
+					secondMenu.nextElementSibling.classList.add( 'rgbcode-menu-scrolldown_hide' );
+				}
 			}
 		} );
 	} );
