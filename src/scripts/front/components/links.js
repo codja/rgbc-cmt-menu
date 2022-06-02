@@ -22,11 +22,15 @@ const showBtn = () => {
 }
 
 const langBarTransform = () => {
-	langBar.classList.add( 'lang_bar_active' );
+	if ( langBar ) {
+		langBar.classList.add( 'lang_bar_active' );
+	}
 }
 
 export const langBarTransformDisable = () => {
-	langBar.classList.remove( 'lang_bar_active' );
+	if ( langBar ) {
+		langBar.classList.remove( 'lang_bar_active' );
+	}
 }
 
 const menuItemsHandler = ( item, add = true ) => {

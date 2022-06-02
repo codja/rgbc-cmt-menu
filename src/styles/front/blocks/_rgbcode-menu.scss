@@ -48,6 +48,14 @@
 				font-weight: bold;
 				padding-bottom: 1em;
 			}
+
+			&:hover {
+				color: #fff;
+
+				@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+					color: #000;
+				}
+			}
 		}
 
 		&-menu-item {
@@ -57,6 +65,14 @@
 			flex-direction: column;
 			padding-bottom: 0.4em;
 
+			@include media_max( map-get( $breaks, 'desktop' ) ) {
+				padding-inline: 15px 15px;
+			}
+
+			@include media_max( 1400px ) {
+				padding-inline: 7px 10px;
+			}
+
 			@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
 				padding-top: 17px;
 				padding-bottom: 23px;
@@ -64,6 +80,10 @@
 
 			&.menu-item-has-children {
 				padding-inline-end: 40px;
+
+				@include media_max( map-get( $breaks, 'desktop' ) ) {
+					padding-inline-end: 35px;
+				}
 
 				@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
 					padding-inline-start: 0;
@@ -267,8 +287,13 @@
 
 				@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
 					border-inline-end: 1px solid #ddd;
+					padding-inline: 1em;
+					width: 200px;
+				}
+
+				@include media_min( map-get( $breaks, 'desktop' ) ) {
 					padding-inline: 2em;
-					width: 230px;
+					width: 240px;
 				}
 
 				&.lang_bar_item {

@@ -17,6 +17,11 @@ class Menu {
 
 	public function init_menu() {
 		$menu_id = $this->get_menu_id();
+
+		if ( ! $menu_id ) {
+			return false;
+		}
+
 		?>
 		<header id="rgbcode-menu-header" class="rgbcode-menu-header">
 			<div class="rgbcode-menu-header__container">
@@ -165,7 +170,7 @@ class Menu {
 		return wp_get_attachment_image_src( $custom_logo_id, 'full' );
 	}
 
-	private function get_menu_id(): int {
+	private function get_menu_id(): ?int {
 		$locations = get_nav_menu_locations();
 		return $locations[ self::LOCATION_NAME ];
 	}

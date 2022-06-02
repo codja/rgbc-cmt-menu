@@ -59,6 +59,10 @@
 
 	&__menu {
 
+		@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+			flex-grow: 2;
+		}
+
 		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
 			//display: none;
 
