@@ -100,6 +100,27 @@
 						max-width: 70%;
 					}
 
+					.rgbcode-menu__second-lvl-menu {
+						padding-bottom: 0;
+						right: initial;
+						left: 0;
+					}
+
+					.rgbcode-menu__second-lvl-link {
+						display: flex;
+						gap: 0.4em;
+					}
+
+					img {
+						width:30px;
+					}
+
+					span {
+						margin-left: 5px;
+						display: flex;
+						gap: 0.3em;
+					}
+
 					&.lang_bar_active {
 
 						@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
@@ -248,6 +269,10 @@
 					border-inline-end: 1px solid #ddd;
 					padding-inline: 2em;
 					width: 230px;
+				}
+
+				&.lang_bar_item {
+					width: initial;
 				}
 
 				&:not(.lang_bar_item) {

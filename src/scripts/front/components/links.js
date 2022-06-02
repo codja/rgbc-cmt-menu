@@ -45,7 +45,11 @@ const menuItemsHandler = ( item, add = true ) => {
 export function initLinks() {
 	firstLvlLinks.forEach( item => {
 		item.addEventListener('click', (evt) => {
-			if ( detectTablet() && ! item.parentElement.classList.contains( 'rgbcode-menu-active' ) ) {
+			if (
+				detectTablet()
+				&& ! item.parentElement.classList.contains( 'rgbcode-menu-active' )
+				|| item.parentElement.classList.contains( 'lang_bar_item' )
+			) {
 				evt.preventDefault();
 			}
 		});
