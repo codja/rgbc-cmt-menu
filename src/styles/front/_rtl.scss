@@ -1,0 +1,94 @@
+[dir="rtl"] {
+	.rgbcode-menu__first-lvl-menu-item {
+
+		&.menu-item-has-children {
+
+			&.lang_bar_item {
+
+				&.lang_bar_active {
+					left: initial;
+					right: 17px;
+				}
+
+				.rgbcode-menu__second-lvl-menu {
+					left: initial;
+					right: 0;
+				}
+			}
+
+			&::after {
+				left: 11px;
+				right: initial;
+			}
+		}
+
+		&.rgbcode-menu__reverse-block .rgbcode-menu__second-lvl-menu {
+			left: -13em;
+			right: initial;
+		}
+	}
+
+	.rgbcode-menu__second-lvl-menu {
+
+		@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+			right: -2em;
+			left: initial;
+			box-shadow: 6px 7px 8px -6px #000;
+		}
+	}
+
+	.rgbcode-menu-modal__close[type=button] {
+		right: 10px;
+		left: initial;
+	}
+
+	.rgbcode-menu__third-lvl-btn {
+
+		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			right: initial;
+			left: 50px;
+		}
+
+		&::after {
+
+			@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+				left: -18px;
+				right: initial;
+				transform: rotate(136deg);
+			}
+		}
+	}
+
+	.rgbcode-menu-header {
+
+		&__menu {
+
+			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+				left: initial;
+				right: -100%;
+				transition: right .7s linear;
+			}
+		}
+
+		&__close {
+			left: 0;
+			right: initial;
+		}
+
+		&__back[type=button] {
+			left: initial;
+			right: 15px;
+		}
+
+	}
+
+	.rgbcode-menu-hamburger[type=button].active ~ .rgbcode-menu-header__menu {
+		right: 0;
+	}
+
+	.rgbcode-menu-scrolldown__btn {
+		left: initial;
+		right: 40px;
+	}
+
+}

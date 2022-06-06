@@ -59,7 +59,9 @@ class Menu {
 					$login_btn = get_field( 'rgbc_menu_login_button', "menu_$menu_id" );
 					if ( $login_btn ) :
 						?>
-						<a href="/mobile/" class="rgbcode-menu-header__login rgbcode-menu-button">Login</a>
+						<a href="/mobile/" class="rgbcode-menu-header__login rgbcode-menu-button">
+							<?php echo esc_html__( 'Login', 'rgbcode-menu' ); ?>
+						</a>
 					<?php endif; ?>
 				</div> <!-- ./rgbcode-menu-header__wrapper -->
 

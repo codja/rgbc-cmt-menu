@@ -7,7 +7,7 @@
 * Author URI: https://rgbcode.com/
 * Version: 0.1
 * Text Domain: rgbcode-menu
-* Domain Path: /languages/
+* Domain Path: /languages
 */
 
 namespace Rgbcode_menu;
@@ -33,9 +33,17 @@ register_uninstall_hook( __FILE__, [ __NAMESPACE__ . '\\Rgbcode_menu', 'uninstal
 
 add_action( 'plugins_loaded', [ __NAMESPACE__ . '\\Rgbcode_menu', 'instance' ] );
 
-class Rgbcode_menu {
+class Rgbcode_Menu {
 
 	use Singleton;
+
+	public function __construct() {
+		load_plugin_textdomain(
+			'rgbcode-menu',
+			false,
+			dirname( plugin_basename( __FILE__ ) ) . '/languages/'
+		);
+	}
 
 	/*
 	 * Plugin activation actions
