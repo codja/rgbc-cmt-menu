@@ -1,5 +1,4 @@
 .idea
-assets
 **/node_modules
 _dev/package-lock.json
 vendor
