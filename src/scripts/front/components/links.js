@@ -17,7 +17,7 @@ export const hideBackBtn = () => {
 	backBtn.classList.remove( 'show' );
 }
 
-const showBtn = () => {
+const showBackBtn = () => {
 	backBtn.classList.add( 'show' );
 }
 
@@ -40,8 +40,8 @@ const menuItemsHandler = ( item, add = true ) => {
 	} else {
 		item.classList.toggle( 'rgbcode-menu-active' )
 	}
-	if ( ! item.classList.contains( 'lang_bar_item' ) ) {
-		showBtn();
+	if ( detectTablet() && ! item.classList.contains( 'lang_bar_item' ) ) {
+		showBackBtn();
 		langBarTransform();
 	}
 }

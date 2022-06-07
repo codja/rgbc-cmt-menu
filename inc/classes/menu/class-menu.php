@@ -164,5 +164,4 @@ class Menu {
 		return $locations[ self::LOCATION_NAME ];
 	}
 
-
 }

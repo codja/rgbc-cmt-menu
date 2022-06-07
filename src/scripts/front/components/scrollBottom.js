@@ -1,6 +1,7 @@
 import {detectTablet} from "./links";
 
 const scrollBlocks = document.querySelectorAll( '.rgbcode-menu__second-lvl-menu' );
+const errorRate = 2;
 
 export function initScrollBottom () {
 	scrollBlocks.forEach( item => {
@@ -8,7 +9,7 @@ export function initScrollBottom () {
 			if ( ! detectTablet() ) {
 				return;
 			}
-			if ( item.offsetHeight + item.scrollTop >= item.scrollHeight ) {
+			if ( item.offsetHeight + item.scrollTop >= item.scrollHeight - errorRate ) {
 				item.classList.add( 'rgbcode-menu__second-lvl-menu_no-mask' );
 				item.nextElementSibling.classList.add( 'rgbcode-menu-scrolldown_hide' );
 			} else {
