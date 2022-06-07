@@ -20,6 +20,10 @@
 		padding-inline-start: 0;
 	}
 
+	@include media_max( map-get( $breaks, 'mobile_xs' ) ) {
+		width: 220px;
+	}
+
 	ul {
 		list-style: none;
 	}
@@ -368,7 +372,7 @@
 
 			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
 				position: absolute;
-				bottom: 30px;
+				bottom: 14.8vh;
 				right: 50px;
 			}
 

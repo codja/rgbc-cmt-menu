@@ -155,6 +155,7 @@ class Menu {
 
 			</div>
 		</header>
+		<div class="rgbcode-menu-back"></div>
 		<div class="rgbcode-menu-modal">
 			<div class="rgbcode-menu-modal__window">
 				<button class="rgbcode-menu-modal__close" type="button">
