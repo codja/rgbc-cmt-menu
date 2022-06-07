@@ -61,6 +61,20 @@
 
 	.rgbcode-menu-header {
 
+		&__login {
+
+			@include media_max( map-get( $breaks, 'mobile_xs' ) ) {
+				font-size: 11px;
+			}
+		}
+
+		&__open-btn {
+
+			@include media_max( map-get( $breaks, 'mobile_xs' ) ) {
+				max-width: 50%;
+			}
+		}
+
 		&__menu {
 
 			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
