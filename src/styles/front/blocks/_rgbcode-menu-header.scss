@@ -41,22 +41,6 @@
 		}
 	}
 
-	&__livechat {
-
-		a {
-			transform: initial;
-		}
-	}
-
-	&__livechat,
-	&__login {
-		display: none;
-
-		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
-			display: block;
-		}
-	}
-
 	&__menu {
 
 		@include media_min( map-get( $breaks, 'desktop_sm' ) ) {

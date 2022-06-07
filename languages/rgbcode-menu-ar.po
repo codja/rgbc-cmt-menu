@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rgbcode-menu\n"
-"POT-Creation-Date: 2022-06-06 17:45+0300\n"
+"POT-Creation-Date: 2022-06-07 15:43+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Ruslan <ruslan@rgbcode.com>\n"
 "Language-Team: Rgbcode\n"
@@ -24,10 +24,9 @@ msgstr ""
 msgid "Rgbcode menu Primary"
 msgstr ""
 
-#: inc/classes/menu/class-menu.php:63
-msgid "Login"
-msgstr "تسجيل الدخول"
-
-#: inc/classes/menu/class-menu.php:151
+#: inc/classes/menu/class-menu.php:137
 msgid "Back"
 msgstr "رجوع"
+
+#~ msgid "Login"
+#~ msgstr "تسجيل الدخول"

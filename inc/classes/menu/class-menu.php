@@ -47,22 +47,8 @@ class Menu {
 					<?php endif; ?>
 
 					<?php
-					$livechat = get_field( 'rgbc_menu_live_chat_button', "menu_$menu_id" );
-					if ( $livechat ) :
-						?>
-					<div class="rgbcode-menu-header__livechat cm_livechat">
-						<a href="https://direct.lc.chat/9761490"></a>
-					</div>
-					<?php endif; ?>
-
-					<?php
-					$login_btn = get_field( 'rgbc_menu_login_button', "menu_$menu_id" );
-					if ( $login_btn ) :
-						?>
-						<a href="/mobile/" class="rgbcode-menu-header__login rgbcode-menu-button">
-							<?php echo esc_html__( 'Login', 'rgbcode-menu' ); ?>
-						</a>
-					<?php endif; ?>
+						echo wp_kses_post( apply_filters( 'rgbc_menu_header_after_logo', '' ) );
+					?>
 				</div> <!-- ./rgbcode-menu-header__wrapper -->
 
 				<nav class="rgbcode-menu-header__menu">
