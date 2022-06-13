@@ -2,6 +2,8 @@
 
 namespace Rgbcode_menu\classes\core;
 
+use Rgbcode_menu\classes\menu\Menu;
+
 class Setup {
 
 	public function __construct() {
@@ -27,6 +29,13 @@ class Setup {
 	}
 
 	public function enqueue_front() {
+		$menu_id        = Menu::instance()->get_menu_id();
+		$is_enable_menu = get_field( 'rgbc_menu_enable', "menu_$menu_id" );
+
+		if ( ! $is_enable_menu ) {
+			return false;
+		}
+
 		wp_enqueue_style(
 			'rgbcode_menu_style',
 			RGBCODE_MENU_PLUGIN_URL . 'assets/css/front/rgbcode-menu.min.css',

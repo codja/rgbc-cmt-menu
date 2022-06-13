@@ -2,7 +2,11 @@
 
 namespace Rgbcode_menu\classes\menu;
 
+use Rgbcode_menu\traits\Singleton;
+
 class Menu {
+
+	use Singleton;
 
 	const LOCATION_NAME = 'rgbc_primary';
 
@@ -19,6 +23,12 @@ class Menu {
 		$menu_id = $this->get_menu_id();
 
 		if ( ! $menu_id ) {
+			return false;
+		}
+
+		$is_enable_menu = get_field( 'rgbc_menu_enable', "menu_$menu_id" );
+
+		if ( ! $is_enable_menu ) {
 			return false;
 		}
 
@@ -159,7 +169,7 @@ class Menu {
 		return wp_get_attachment_image_src( $custom_logo_id, 'full' );
 	}
 
-	private function get_menu_id(): ?int {
+	public function get_menu_id(): ?int {
 		$locations = get_nav_menu_locations();
 		return $locations[ self::LOCATION_NAME ];
 	}

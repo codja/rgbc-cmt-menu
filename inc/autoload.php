@@ -43,4 +43,4 @@ if ( function_exists( '__autoload' ) ) {
 new Setup();
 Error::instance();
 ACF::instance();
-new Menu();
+Menu::instance();
