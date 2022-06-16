@@ -138,15 +138,22 @@
 
 	&__back[type="button"] {
 		position: absolute;
-		bottom: 13vh;
-		left: 15px;
+		top: 0.5em;
+		right: 50px;
 		z-index: 20;
 
 		display: none;
-		font-size: 0.95em;
+		font-size: 1.25em;
 
 		color: #000;
 		border: none;
+
+		svg {
+
+			path {
+				fill: #3f3f3f;
+			}
+		}
 
 		&.show {
 

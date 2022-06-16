@@ -83,8 +83,9 @@
 		}
 
 		&__back[type=button] {
-			left: initial;
-			right: 15px;
+			right: initial;
+			left: 50px;
+			transform: scale(-1, 1);
 		}
 
 	}

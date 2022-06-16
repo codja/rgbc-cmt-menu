@@ -292,12 +292,12 @@
 				@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
 					border-inline-end: 1px solid #ddd;
 					padding-inline: 1em;
-					width: 200px;
+					width: 185px;
 				}
 
 				@include media_min( map-get( $breaks, 'desktop' ) ) {
 					padding-inline: 2em;
-					width: 240px;
+					width: 225px;
 				}
 
 				&.lang_bar_item {
@@ -376,6 +376,18 @@
 				right: 50px;
 			}
 
+			@media screen and ( max-width: map_get($breaks, desktop_sm) ) and ( min-height: 1000px ) {
+				bottom: 22.1vh;
+			}
+
+			@media screen and ( max-width: map_get($breaks, desktop_sm) ) and ( min-height: 1070px ) {
+				bottom: 25.2vh;
+			}
+
+			@media screen and ( max-width: map_get($breaks, desktop_sm) ) and ( min-height: 1150px ) {
+				bottom: 31.2vh;
+			}
+
 			&::after {
 
 				@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
@@ -429,7 +441,6 @@
 				display: none;
 			}
 		}
-
 
 	}
 }
