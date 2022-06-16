@@ -5,7 +5,7 @@
 * Description: Rgbcode Menu.
 * Author: rgbcode
 * Author URI: https://rgbcode.com/
-* Version: 1.0.4
+* Version: 1.0.5
 * Text Domain: rgbcode-menu
 * Domain Path: /languages
 */
@@ -14,13 +14,20 @@ namespace Rgbcode_menu;
 
 use Rgbcode_menu\traits\Singleton;
 
-if ( ! defined( 'ABSPATH' ) || ! is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit();
+}
+
+if ( ! function_exists( 'is_plugin_active' ) ) {
+	include_once ABSPATH . 'wp-admin/includes/plugin.php';
+	if ( ! is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) {
+		exit();
+	}
 }
 
 define( 'RGBCODE_MENU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'RGBCODE_MENU_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'RGBCODE_MENU_VERSION', '1.0.4' );
+define( 'RGBCODE_MENU_VERSION', '1.0.5' );
 define( 'RGBCODE_MENU_IMAGES', RGBCODE_MENU_PLUGIN_URL . 'assets/images' );
 define( 'RGBCODE_MENU_IMAGES_DIR', RGBCODE_MENU_PLUGIN_DIR . 'assets/images' );
 
