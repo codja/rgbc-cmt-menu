@@ -90,6 +90,13 @@
 
 	}
 
+	.rgbcode-menu-button {
+
+		@include media_max( map-get( $breaks, 'mobile_xxs' ) ) {
+			font-size: 11px;
+		}
+	}
+
 	.rgbcode-menu-hamburger[type=button].active ~ .rgbcode-menu-header__menu {
 		right: 0;
 	}

@@ -5,7 +5,7 @@
 * Description: Rgbcode Menu.
 * Author: rgbcode
 * Author URI: https://rgbcode.com/
-* Version: 1.0.5
+* Version: 1.0.6
 * Text Domain: rgbcode-menu
 * Domain Path: /languages
 */
@@ -27,7 +27,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 
 define( 'RGBCODE_MENU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'RGBCODE_MENU_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'RGBCODE_MENU_VERSION', '1.0.5' );
+define( 'RGBCODE_MENU_VERSION', '1.0.6' );
 define( 'RGBCODE_MENU_IMAGES', RGBCODE_MENU_PLUGIN_URL . 'assets/images' );
 define( 'RGBCODE_MENU_IMAGES_DIR', RGBCODE_MENU_PLUGIN_DIR . 'assets/images' );
 
