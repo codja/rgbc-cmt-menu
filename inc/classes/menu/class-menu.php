@@ -67,7 +67,7 @@ class Menu {
 					$mobile_opened_logo = get_field( 'rgbc_menu_mobile_opened_logo', "menu_$menu_id" );
 					if ( $mobile_opened_logo ) :
 						?>
-					<img class="rgbcode-menu-header__open-logo" src="<?php echo esc_url( $mobile_opened_logo['url'] ); ?>" width="230" alt="cmtrading">
+					<a href="<?php echo get_site_url() ?>"><img class="rgbcode-menu-header__open-logo" src="<?php echo esc_url( $mobile_opened_logo['url'] ); ?>" width="230" alt="cmtrading"></a>
 					<?php endif; ?>
 
 					<button class="rgbcode-menu-header__close"></button>
