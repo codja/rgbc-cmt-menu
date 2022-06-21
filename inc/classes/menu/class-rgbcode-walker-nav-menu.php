@@ -101,6 +101,9 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		if ( $depth === 2 && in_array( 'rgbcode-menu__last', $item->classes ) ) {
 			$output .= $this->render_custom_button( $item, $n );
 		}
+		if ( $depth === 2 && in_array( 'rgbcode-menu__bottom-content', $item->classes, true ) ) {
+			$output .= $this->render_bottom_content( $item, $n );
+		}
 	}
 
 	public function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
@@ -138,9 +141,10 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 
 		//If current element is the last of the siblings, add class
 		//Get the 'last' of the siblings.
-		$last_child           = array_pop( $siblings );
-		$id_field             = $this->db_fields['id'];
-		$is_enable_custom_col = get_field( 'rgbc_menu_custom_area_column', $element->menu_item_parent );
+		$last_child                = array_pop( $siblings );
+		$id_field                  = $this->db_fields['id'];
+		$is_enable_custom_col      = get_field( 'rgbc_menu_custom_area_column', $element->menu_item_parent );
+		$is_enabled_bottom_content = get_field( 'rgbc_menu_bottom_content', $element->menu_item_parent );
 		if ( $element->$id_field === $last_child->$id_field ) {
 			$classes = empty( $element->classes ) ? array() : (array) $element->classes;
 			if ( $is_enable_custom_col && $depth === 1 ) {
@@ -152,6 +156,11 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 			if ( $is_enable_custom_link && get_post_meta( $element->menu_item_parent, 'is_last_column', true ) ) {
 				$classes[] = 'rgbcode-menu__last';
 			}
+
+			if ( $is_enabled_bottom_content && $depth === 2 ) {
+				$classes[] = 'rgbcode-menu__bottom-content';
+			}
+
 			$element->classes = $classes;
 		} else {
 			delete_post_meta( $element->ID, 'is_last_column' );
@@ -196,6 +205,50 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		<?php
 		echo $n;
 		return ob_get_clean();
+	}
+
+	/**
+	 * @param Object $item
+	 * @param string $n
+	 *
+	 * @return string
+	 */
+	private function render_bottom_content( $item, $n ) {
+		$bottom_content_data = get_field( 'rgbc_menu_bottom_content_settings', $item->menu_item_parent );
+		$title               = $bottom_content_data['title'] ?? '';
+		$items               = $bottom_content_data['items'] ?? [];
+		$classes             = $bottom_content_data['classes'] ?? '';
+		$hide_on_mobile      = $bottom_content_data['hide_on_mobile'];
+		$classes             = explode( ',', $classes );
+		if ( $hide_on_mobile ) {
+			$classes[] = 'rgbcode-menu-only-desktop';
+		}
+		ob_start();
+		?>
+
+		<div
+			class="rgbcode-menu-bottom-content
+			<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
+			<div class="rgbcode-menu-bottom-content__title"><?php echo esc_html( $title ); ?></div>
+			<div class="rgbcode-menu-bottom-content__items">
+				<?php foreach ( $items as $item ) { ?>
+					<div class="rgbcode-menu-bottom-content__item">
+						<a href="<?php echo esc_url( $item['url'] ); ?>" class="rgbcode-menu-bottom-content__link">
+							<img
+								class="rgbcode-menu-bottom-content__img"
+								src="<?php echo esc_url( wp_get_attachment_image_url( $item['image'] ) ); ?>
+							"/>
+						</a>
+					</div>
+				<?php } ?>
+			</div>
+		</div>
+		<?php
+		//phpcs:ignore
+		echo $n;
+		$res = ob_get_clean();
+
+		return $res ? $res : '';
 	}
 
 	private function render_custom_button( $item, $n ) {
