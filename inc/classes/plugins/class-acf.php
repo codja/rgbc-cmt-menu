@@ -262,7 +262,7 @@ class ACF {
 								'placeholder' => '',
 							),
 							array(
-								'key' => 'field_62b2bf20c58d9',
+								'key' => 'field_62b2dc043b73a',
 								'label' => 'Show social icons',
 								'name' => 'rgbc_show_social_icons',
 								'type' => 'true_false',
@@ -281,7 +281,7 @@ class ACF {
 								'ui_off_text' => '',
 							),
 							array(
-								'key' => 'field_62b2bf65c58da',
+								'key' => 'field_62b2dc2a3b73b',
 								'label' => 'Social icons title',
 								'name' => 'rgbc_social_icons_title',
 								'type' => 'text',
@@ -290,7 +290,7 @@ class ACF {
 								'conditional_logic' => array(
 									array(
 										array(
-											'field' => 'field_62b2bf20c58d9',
+											'field' => 'field_62b2dc043b73a',
 											'operator' => '==',
 											'value' => '1',
 										),
@@ -444,6 +444,52 @@ class ACF {
 						'toggle' => 0,
 						'return_format' => 'value',
 						'save_custom' => 0,
+					),
+					array(
+						'key' => 'field_62b2d69df3735',
+						'label' => 'Show social icons',
+						'name' => 'rgbc_show_social_icons',
+						'type' => 'true_false',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'message' => '',
+						'default_value' => 0,
+						'ui' => 1,
+						'ui_on_text' => '',
+						'ui_off_text' => '',
+					),
+					array(
+						'key' => 'field_62b2d6b9f3736',
+						'label' => 'Social icons title',
+						'name' => 'rgbc_social_icons_title',
+						'type' => 'text',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => array(
+							array(
+								array(
+									'field' => 'field_62b2d69df3735',
+									'operator' => '==',
+									'value' => '1',
+								),
+							),
+						),
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'default_value' => 'Follow us on Social Media',
+						'placeholder' => '',
+						'prepend' => '',
+						'append' => '',
+						'maxlength' => '',
 					),
 				),
 				'location' => array(
