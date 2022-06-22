@@ -101,6 +101,24 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		if ( $depth === 2 && in_array( 'rgbcode-menu__last', $item->classes ) ) {
 			$output .= $this->render_custom_button( $item, $n );
 		}
+		if ( in_array( 'rgbcode-menu__show_social_icons', $item->classes, true ) ) {
+			ob_start();
+			$social_icons_title = get_field( 'rgbc_social_icons_title', $item->menu_item_parent );
+			$items              = $this->get_social_items_data();
+			load_template(
+				RGBCODE_MENU_PLUGIN_DIR . 'templates/social-icons.php',
+				false,
+				[
+					'title'   => $social_icons_title,
+					'items'   => $items,
+					'classes' => [ 'rgbcode-menu-only-desktop' ],
+				]
+			);
+			$load_template_res = ob_get_clean();
+			$load_template_res = $load_template_res ? $load_template_res : '';
+
+			$output .= $load_template_res . $n;
+		}
 	}
 
 	public function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
@@ -141,6 +159,7 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		$last_child           = array_pop( $siblings );
 		$id_field             = $this->db_fields['id'];
 		$is_enable_custom_col = get_field( 'rgbc_menu_custom_area_column', $element->menu_item_parent );
+		$show_social_icons    = get_field( 'rgbc_show_social_icons', $element->menu_item_parent );
 		if ( $element->$id_field === $last_child->$id_field ) {
 			$classes = empty( $element->classes ) ? array() : (array) $element->classes;
 			if ( $is_enable_custom_col && $depth === 1 ) {
@@ -151,6 +170,10 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 
 			if ( $is_enable_custom_link && get_post_meta( $element->menu_item_parent, 'is_last_column', true ) ) {
 				$classes[] = 'rgbcode-menu__last';
+			}
+
+			if ( $show_social_icons && $depth === 2 ) {
+				$classes[] = 'rgbcode-menu__show_social_icons';
 			}
 
 			$element->classes = $classes;
@@ -198,8 +221,7 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 			<?php endif; ?>
 			<?php
 			if ( $show_social_icons ) {
-				$menu_id = get_nav_menu_locations()[ Menu::LOCATION_NAME ] ?? null;
-				$items   = get_field( 'rgbc_menu_social_buttons', "menu_$menu_id" );
+				$items = $this->get_social_items_data();
 
 				load_template(
 					RGBCODE_MENU_PLUGIN_DIR . 'templates/social-icons.php',
@@ -274,5 +296,15 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		</div>
 		<?php
 		return ob_get_clean();
+	}
+
+	/**
+	 * @return mixed
+	 */
+	private function get_social_items_data() {
+		$menu_id = get_nav_menu_locations()[ Menu::LOCATION_NAME ] ?? null;
+		$items   = get_field( 'rgbc_menu_social_buttons', "menu_$menu_id" );
+
+		return $items;
 	}
 }
