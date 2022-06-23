@@ -143,8 +143,8 @@ class Menu {
 							?>
 							<a
 								class="rgbcode-menu-header__link rgbcode-menu-only-mobile"
-								href="<?php echo esc_url( $button['url'] ); ?>"
-								target="<?php echo esc_attr( $button['target'] ); ?>"
+								href="<?php echo esc_url( $link['url'] ); ?>"
+								target="<?php echo esc_attr( $link['target'] ); ?>"
 							><?php echo esc_html( $link['title'] ); ?></a>
 						<?php endif; ?>
 					</div>
