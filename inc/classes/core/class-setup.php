@@ -9,7 +9,7 @@ class Setup {
 	public function __construct() {
 		// Load our frontend css and js
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_front' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_front' ], 9000 );
 	}
 
 	public function enqueue_admin() {
