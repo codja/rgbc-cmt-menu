@@ -138,15 +138,21 @@ class Menu {
 						<?php endif; ?>
 
 						<?php
-						$link = get_field( 'rgbc_menu_open_link', "menu_$menu_id" );
-						if ( $link ) :
-							?>
-							<a
-								class="rgbcode-menu-header__link rgbcode-menu-only-mobile"
-								href="<?php echo esc_url( $link['url'] ); ?>"
-								target="<?php echo esc_attr( $link['target'] ); ?>"
-							><?php echo esc_html( $link['title'] ); ?></a>
-						<?php endif; ?>
+						$urls_title   = get_field( 'rgbc_menu_open_urls_title', "menu_$menu_id" );
+						$urls_desktop = get_field( 'rgbc_menu_open_urls_desktop', "menu_$menu_id" );
+						$urls_mobile  = get_field( 'rgbc_menu_open_urls_mobile', "menu_$menu_id" );
+
+						load_template(
+							RGBCODE_MENU_PLUGIN_DIR . 'templates/platform-urls.php',
+							false,
+							[
+								'title'         => $urls_title,
+								'desktop_items' => $urls_desktop,
+								'mobile_items'  => $urls_mobile,
+								'classes'       => [ 'rgbcode-menu-only-mobile' ],
+							]
+						);
+						?>
 					</div>
 				</nav>
 

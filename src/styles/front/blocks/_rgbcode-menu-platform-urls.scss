@@ -1,0 +1,24 @@
+.rgbcode-menu-platform-urls {
+	&__title {
+		margin-bottom: 2vh;
+		font-size: 1.3em;
+		font-weight: bold;
+	}
+
+	&__item {
+		&-with-icon {
+			max-width: 150px;
+		}
+		a {
+			font-size: 1.2em;
+		}
+	}
+
+	&__items {
+		display: flex;
+		gap: 10px;
+		flex-wrap: wrap;
+		align-items: center;
+		margin-top: 10px;
+	}
+}
