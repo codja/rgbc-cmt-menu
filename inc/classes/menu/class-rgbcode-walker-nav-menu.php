@@ -25,12 +25,9 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 			$t = "\t";
 			$n = "\n";
 		}
-		$indent        = str_repeat( $t, $depth );
-		$display_depth = ( $depth + 1 );
-		$additional    = '';
-		if ( $display_depth === 1 ) {
-			$additional = $this->render_scroll_icon();
-		}
+		$indent     = str_repeat( $t, $depth );
+		$additional = '';
+
 		$output .= "$indent</ul>{$additional}{$n}";
 	}
 
@@ -52,11 +49,11 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		$format     = '%1$s<div%2$s>%3$s%4$s%5$s</div>%6$s';
 		$title      = $item->title;
 		// link attributes
-		$attributes     = ! empty( $item->attr_title ) ? ' title="' . esc_attr( $item->attr_title ) . '"' : '';
-		$attributes    .= ! empty( $item->target ) ? ' target="' . esc_attr( $item->target ) . '"' : '';
-		$attributes    .= ! empty( $item->xfn ) ? ' rel="' . esc_attr( $item->xfn ) . '"' : '';
-		$attributes    .= " class='$class_name'";
-		$is_enable_link = get_field( 'rgbc_menu_enable_link', $item->ID );
+		$attributes        = ! empty( $item->attr_title ) ? ' title="' . esc_attr( $item->attr_title ) . '"' : '';
+		$attributes        .= ! empty( $item->target ) ? ' target="' . esc_attr( $item->target ) . '"' : '';
+		$attributes        .= ! empty( $item->xfn ) ? ' rel="' . esc_attr( $item->xfn ) . '"' : '';
+		$is_enable_link    = get_field( 'rgbc_menu_enable_link', $item->ID );
+		$is_empty_subtitle = false;
 
 		if ( $is_enable_link ) {
 			$attributes .= ! empty( $item->url ) ? ' href="' . esc_url( $item->url ) . '"' : '';
@@ -70,6 +67,9 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 			$is_empty_subtitle = get_field( 'rgbc_menu_empty', $item->ID );
 			$title             = $is_empty_subtitle ? '' : $item->title;
 		}
+
+		$class_name .= $is_empty_subtitle ? ' rgbcode-menu-empty-subtitle' : '';
+		$attributes .= " class='$class_name'";
 
 		$item_output = sprintf(
 			$format,
@@ -279,23 +279,6 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		$parts = wp_parse_url( esc_url_raw( $url ) );
 		parse_str( $parts['query'], $query );
 		return $query[ $param ];
-	}
-
-	private function render_scroll_icon() {
-		ob_start();
-		?>
-		<div class="rgbcode-menu-scrolldown rgbcode-menu-only-mobile">
-			<div class="rgbcode-menu-scrolldown__btn">
-				<svg width="50px" height="80px" viewbox="0 0 50 80">
-					<path class="first-path"
-						d="M24.752,79.182c-0.397,0-0.752-0.154-1.06-0.463L2.207,57.234c-0.306-0.305-0.458-0.656-0.458-1.057                  s0.152-0.752,0.458-1.059l2.305-2.305c0.309-0.309,0.663-0.461,1.06-0.461c0.398,0,0.752,0.152,1.061,0.461l18.119,18.119                  l18.122-18.119c0.306-0.309,0.657-0.461,1.057-0.461c0.402,0,0.753,0.152,1.059,0.461l2.306,2.305                  c0.308,0.307,0.461,0.658,0.461,1.059s-0.153,0.752-0.461,1.057L25.813,78.719C25.504,79.027,25.15,79.182,24.752,79.182z"/>
-					<path class="second-path"
-					  d="M24.752,58.25c-0.397,0-0.752-0.154-1.06-0.463L2.207,36.303c-0.306-0.304-0.458-0.655-0.458-1.057                  c0-0.4,0.152-0.752,0.458-1.058l2.305-2.305c0.309-0.308,0.663-0.461,1.06-0.461c0.398,0,0.752,0.153,1.061,0.461l18.119,18.12                  l18.122-18.12c0.306-0.308,0.657-0.461,1.057-0.461c0.402,0,0.753,0.153,1.059,0.461l2.306,2.305                  c0.308,0.306,0.461,0.657,0.461,1.058c0,0.401-0.153,0.753-0.461,1.057L25.813,57.787C25.504,58.096,25.15,58.25,24.752,58.25z"/>
-				</svg>
-			</div>
-		</div>
-		<?php
-		return ob_get_clean();
 	}
 
 	/**
