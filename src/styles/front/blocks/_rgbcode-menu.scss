@@ -224,7 +224,6 @@
 						max-height: 70%;
 						flex-direction: column;
 						overflow-y: scroll;
-						mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 					}
 
 					&_no-mask {
@@ -241,13 +240,6 @@
 						position: absolute;
 						bottom: 30px;
 						right: 50px;
-					}
-				}
-
-				& > .rgbcode-menu-scrolldown {
-
-					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
-						display: block;
 					}
 				}
 			}

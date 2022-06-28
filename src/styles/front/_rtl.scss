@@ -82,12 +82,6 @@
 			right: initial;
 		}
 
-		&__back[type=button] {
-			right: initial;
-			left: 50px;
-			transform: scale(-1, 1);
-		}
-
 	}
 
 	.rgbcode-menu-button {
@@ -99,11 +93,6 @@
 
 	.rgbcode-menu-hamburger[type=button].active ~ .rgbcode-menu-header__menu {
 		right: 0;
-	}
-
-	.rgbcode-menu-scrolldown__btn {
-		left: initial;
-		right: 40px;
 	}
 
 }

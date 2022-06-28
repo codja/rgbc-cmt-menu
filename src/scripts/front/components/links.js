@@ -1,6 +1,5 @@
 const firstLvlMenuItems = document.querySelectorAll( '.rgbcode-menu__first-lvl-menu-item' );
 const firstLvlLinks = document.querySelectorAll( '.rgbcode-menu__first-lvl-link' );
-const backBtn = document.querySelector( '.rgbcode-menu-header__back' );
 const langBar = document.querySelector( '.rgbcode-menu__first-lvl-menu-item.lang_bar_item' );
 
 export function detectTablet() {
@@ -13,13 +12,31 @@ export const deselectLinks = () => {
 	} )
 }
 
-export const hideBackBtn = () => {
-	backBtn.classList.remove( 'show' );
-}
+const hideActiveMenu = ( e ) => {
+	deselectLinks();
+	hideBackBtn( e );
+	langBarTransformDisable();
+};
 
-const showBackBtn = () => {
-	backBtn.classList.add( 'show' );
-}
+export const hideBackBtn = ( item ) => {
+	const menuItem = item.querySelector( '.rgbcode-menu__first-lvl-link' );
+
+	if ( ! menuItem ) {
+		return null;
+	}
+
+	menuItem.classList.remove( 'rgbcode-menu-header__back' );
+};
+
+const showBackBtn = ( item ) => {
+	const menuItem = item.querySelector( '.rgbcode-menu__first-lvl-link' );
+
+	if ( ! menuItem ) {
+		return null;
+	}
+
+	menuItem.classList.add( 'rgbcode-menu-header__back' );
+};
 
 const langBarTransform = () => {
 	if ( langBar ) {
@@ -36,12 +53,12 @@ export const langBarTransformDisable = () => {
 const menuItemsHandler = ( item, add = true ) => {
 	if ( add ) {
 		deselectLinks();
-		item.classList.add( 'rgbcode-menu-active' )
+		item.classList.add( 'rgbcode-menu-active' );
 	} else {
-		item.classList.toggle( 'rgbcode-menu-active' )
+		item.classList.toggle( 'rgbcode-menu-active' );
 	}
 	if ( detectTablet() && ! item.classList.contains( 'lang_bar_item' ) ) {
-		showBackBtn();
+		showBackBtn( item );
 		langBarTransform();
 	}
 }
@@ -70,20 +87,20 @@ export function initLinks() {
 		item.addEventListener( 'click', ( e ) => {
 			if ( detectTablet() && ( ! item.classList.contains( 'rgbcode-menu-active' ) || item.classList.contains( 'lang_bar_item' ) ) ) {
 				menuItemsHandler( item, false );
-				const secondMenu = item.querySelector( '.rgbcode-menu__second-lvl-menu' );
-				const isNotHaveScroll = secondMenu.scrollHeight <= secondMenu.clientHeight;
-				if ( isNotHaveScroll ) {
-					secondMenu.classList.add( 'rgbcode-menu__second-lvl-menu_no-mask' );
-					secondMenu.nextElementSibling.classList.add( 'rgbcode-menu-scrolldown_hide' );
+			} else {
+				if ( ! detectTablet() ) {
+					return null;
+				}
+
+				const menuItem = item.querySelector(
+					'.rgbcode-menu__first-lvl-link.rgbcode-menu-header__back'
+				);
+
+				if ( menuItem ) {
+					hideActiveMenu( item );
 				}
 			}
 		} );
-	} );
-
-	backBtn.addEventListener( 'click', () => {
-		deselectLinks();
-		hideBackBtn();
-		langBarTransformDisable()
 	} );
 
 	document.querySelector( '.rgbcode-menu' ).addEventListener( 'mouseleave', ( e ) => {

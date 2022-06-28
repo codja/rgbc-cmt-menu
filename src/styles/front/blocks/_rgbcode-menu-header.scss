@@ -6,6 +6,26 @@
 	z-index: 999;
 	background-color: #0063ff;
 
+	&__back {
+		position: relative;
+		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			&::before {
+				content: '';
+				position: absolute;
+				right: 11px;
+				top: 5px;
+				transform: rotate(225deg);
+				width: 10px;
+				height: 10px;
+				display: block;
+				box-sizing: border-box;
+				border-bottom: 1px solid;
+				border-right: 1px solid;
+				color: #000;
+			}
+		}
+	}
+
 	&__container {
 		padding-top: 15px;
 		padding-inline: 15px;
@@ -139,40 +159,24 @@
 		font-weight: 600;
 		font-size: 0.85em;
 	}
+}
 
-	&__back[type="button"] {
+#wpadminbar ~ #rgbcode-menu-header {
+	position: fixed;
+	top: 32px;
+
+	@include media_max(map-get($breaks, 'desktop_sm')) {
+		.rgbcode-menu-header__menu {
+			padding-bottom: 32px;
+		}
+	}
+
+	@include media_max(map-get($breaks, 'mobile_wp')) {
+		top: 46px;
 		position: absolute;
-		top: 0.5em;
-		right: 50px;
-		z-index: 20;
 
-		display: none;
-		font-size: 1.25em;
-
-		color: #000;
-		border: none;
-
-		svg {
-
-			path {
-				fill: #3f3f3f;
-			}
+		.rgbcode-menu-header__menu {
+			padding-bottom: 46px;
 		}
-
-		&.show {
-
-			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
-				display: flex;
-			}
-		}
-
-		&:hover,
-		&:active,
-		&:focus {
-			color: #000;
-			border: none;
-			background-color: transparent;
-			outline: none;
-		}
-	};
+	}
 }
