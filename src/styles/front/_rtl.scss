@@ -86,6 +86,7 @@
 			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
 				&::before {
 					left: 11px;
+					right: auto;
 				}
 			}
 		}
