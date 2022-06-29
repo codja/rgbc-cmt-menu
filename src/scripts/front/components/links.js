@@ -1,16 +1,22 @@
-const firstLvlMenuItems = document.querySelectorAll( '.rgbcode-menu__first-lvl-menu-item' );
-const firstLvlLinks = document.querySelectorAll( '.rgbcode-menu__first-lvl-link' );
-const langBar = document.querySelector( '.rgbcode-menu__first-lvl-menu-item.lang_bar_item' );
+const firstLvlMenuItems = document.querySelectorAll(
+	'.rgbcode-menu__first-lvl-menu-item'
+);
+const firstLvlLinks = document.querySelectorAll(
+	'.rgbcode-menu__first-lvl-link'
+);
+const langBar = document.querySelector(
+	'.rgbcode-menu__first-lvl-menu-item.lang_bar_item'
+);
 
 export function detectTablet() {
 	return window.innerWidth <= 1280;
 }
 
 export const deselectLinks = () => {
-	firstLvlMenuItems.forEach( link => {
+	firstLvlMenuItems.forEach( ( link ) => {
 		link.classList.remove( 'rgbcode-menu-active' );
-	} )
-}
+	} );
+};
 
 const hideActiveMenu = ( e ) => {
 	deselectLinks();
@@ -42,13 +48,13 @@ const langBarTransform = () => {
 	if ( langBar ) {
 		langBar.classList.add( 'lang_bar_active' );
 	}
-}
+};
 
 export const langBarTransformDisable = () => {
 	if ( langBar ) {
 		langBar.classList.remove( 'lang_bar_active' );
 	}
-}
+};
 
 const menuItemsHandler = ( item, add = true ) => {
 	if ( add ) {
@@ -61,22 +67,24 @@ const menuItemsHandler = ( item, add = true ) => {
 		showBackBtn( item );
 		langBarTransform();
 	}
-}
+};
 
 export function initLinks() {
-	firstLvlLinks.forEach( item => {
-		item.addEventListener('click', (evt) => {
+	firstLvlLinks.forEach( ( item ) => {
+		item.addEventListener( 'click', ( evt ) => {
 			if (
-				detectTablet()
-				&& ! item.parentElement.classList.contains( 'rgbcode-menu-active' )
-				|| item.parentElement.classList.contains( 'lang_bar_item' )
+				( detectTablet() &&
+					! item.parentElement.classList.contains(
+						'rgbcode-menu-active'
+					) ) ||
+				item.parentElement.classList.contains( 'lang_bar_item' )
 			) {
 				evt.preventDefault();
 			}
-		});
+		} );
 	} );
 
-	firstLvlMenuItems.forEach( item => {
+	firstLvlMenuItems.forEach( ( item ) => {
 		item.addEventListener( 'mouseenter', ( e ) => {
 			if ( detectTablet() ) {
 				return;
@@ -85,7 +93,11 @@ export function initLinks() {
 		} );
 
 		item.addEventListener( 'click', ( e ) => {
-			if ( detectTablet() && ( ! item.classList.contains( 'rgbcode-menu-active' ) || item.classList.contains( 'lang_bar_item' ) ) ) {
+			if (
+				detectTablet() &&
+				( ! item.classList.contains( 'rgbcode-menu-active' ) ||
+					item.classList.contains( 'lang_bar_item' ) )
+			) {
 				menuItemsHandler( item, false );
 			} else {
 				if ( ! detectTablet() ) {
@@ -103,12 +115,12 @@ export function initLinks() {
 		} );
 	} );
 
-	document.querySelector( '.rgbcode-menu' ).addEventListener( 'mouseleave', ( e ) => {
-		if ( detectTablet() ) {
-			return;
-		}
-		setTimeout( () => {
+	document
+		.querySelector( '.rgbcode-menu' )
+		.addEventListener( 'mouseleave', ( e ) => {
+			if ( detectTablet() ) {
+				return;
+			}
 			deselectLinks();
-		}, 300 );
-	} );
+		} );
 }

@@ -264,12 +264,12 @@
 			background-color: #fff;
 
 			@include media( map-get( $breaks, 'desktop_sm' ), map-get( $breaks, 'desktop' ) ) {
-				top: 5em;
+				top: 70px;
 			}
 
 			@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
 				position: absolute;
-				top: 4.4em;
+				top: 70px;
 				left: -2em;
 				z-index: 1;
 

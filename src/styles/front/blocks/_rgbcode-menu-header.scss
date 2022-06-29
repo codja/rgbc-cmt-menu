@@ -6,6 +6,10 @@
 	z-index: 999;
 	background-color: #0063ff;
 
+	@include media_min( map-get( $breaks, 'more_then_desktop_sm' ) ) {
+		height: 85px;
+	}
+
 	&__back {
 		position: relative;
 		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
