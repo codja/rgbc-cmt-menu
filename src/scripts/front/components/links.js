@@ -20,18 +20,22 @@ export const deselectLinks = () => {
 
 const hideActiveMenu = ( e ) => {
 	deselectLinks();
-	hideBackBtn( e );
+	hideBackBtn();
 	langBarTransformDisable();
 };
 
-export const hideBackBtn = ( item ) => {
-	const menuItem = item.querySelector( '.rgbcode-menu__first-lvl-link' );
+export const hideBackBtn = () => {
+	const menuItems = document.querySelectorAll(
+		'.rgbcode-menu__first-lvl-link'
+	);
 
-	if ( ! menuItem ) {
+	if ( ! menuItems ) {
 		return null;
 	}
 
-	menuItem.classList.remove( 'rgbcode-menu-header__back' );
+	menuItems.forEach( ( item ) => {
+		item.classList.remove( 'rgbcode-menu-header__back' );
+	} );
 };
 
 const showBackBtn = ( item ) => {
@@ -77,7 +81,8 @@ export function initLinks() {
 					! item.parentElement.classList.contains(
 						'rgbcode-menu-active'
 					) ) ||
-				item.parentElement.classList.contains( 'lang_bar_item' )
+				item.parentElement.classList.contains( 'lang_bar_item' ) ||
+				item.closest( '.rgbcode-menu-header__back' )
 			) {
 				evt.preventDefault();
 			}
