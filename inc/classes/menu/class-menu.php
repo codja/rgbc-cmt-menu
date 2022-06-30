@@ -127,17 +127,21 @@ class Menu {
 
 						<?php
 						$urls_title   = get_field( 'rgbc_menu_open_urls_title', "menu_$menu_id" );
-						$urls_desktop = get_field( 'rgbc_menu_open_urls_desktop', "menu_$menu_id" );
-						$urls_mobile  = get_field( 'rgbc_menu_open_urls_mobile', "menu_$menu_id" );
+						$urls_ios     = get_field( 'rgbc_menu_open_urls_ios', "menu_$menu_id" );
+						$urls_android = get_field( 'rgbc_menu_open_urls_android', "menu_$menu_id" );
+						$urls_mac     = get_field( 'rgbc_menu_open_urls_mac', "menu_$menu_id" );
+						$urls_win     = get_field( 'rgbc_menu_open_urls_win', "menu_$menu_id" );
 
 						load_template(
 							RGBCODE_MENU_PLUGIN_DIR . 'templates/platform-urls.php',
 							false,
 							[
-								'title'         => $urls_title,
-								'desktop_items' => $urls_desktop,
-								'mobile_items'  => $urls_mobile,
-								'classes'       => [ 'rgbcode-menu-only-mobile' ],
+								'title'   => $urls_title,
+								'ios'     => $urls_ios,
+								'android' => $urls_android,
+								'mac'     => $urls_mac,
+								'win'     => $urls_win,
+								'classes' => [ 'rgbcode-menu-only-mobile' ],
 							]
 						);
 						?>
