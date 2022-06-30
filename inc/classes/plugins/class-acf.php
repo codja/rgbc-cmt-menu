@@ -281,6 +281,25 @@ class ACF {
 								'ui_off_text' => '',
 							),
 							array(
+								'key' => 'field_62bd836ee5e91',
+								'label' => 'Show urls by platform',
+								'name' => 'rgbc_show_urls_by_platform',
+								'type' => 'true_false',
+								'instructions' => '',
+								'required' => 0,
+								'conditional_logic' => 0,
+								'wrapper' => array(
+									'width' => '',
+									'class' => '',
+									'id' => '',
+								),
+								'message' => '',
+								'default_value' => 0,
+								'ui' => 1,
+								'ui_on_text' => '',
+								'ui_off_text' => '',
+							),
+							array(
 								'key' => 'field_62b2dc2a3b73b',
 								'label' => 'Social icons title',
 								'name' => 'rgbc_social_icons_title',
@@ -391,7 +410,6 @@ class ACF {
 				'active' => true,
 				'description' => '',
 				'show_in_rest' => 0,
-				'modified' => 1656570003,
 			));
 
 			acf_add_local_field_group(array(
@@ -466,6 +484,25 @@ class ACF {
 						'ui_off_text' => '',
 					),
 					array(
+						'key' => 'field_62bd88e865095',
+						'label' => 'Show urls by platform',
+						'name' => 'rgbc_show_urls_by_platform',
+						'type' => 'true_false',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array(
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'message' => '',
+						'default_value' => 0,
+						'ui' => 1,
+						'ui_on_text' => '',
+						'ui_off_text' => '',
+					),
+					array(
 						'key' => 'field_62b2d6b9f3736',
 						'label' => 'Social icons title',
 						'name' => 'rgbc_social_icons_title',
@@ -516,7 +553,6 @@ class ACF {
 				'active' => true,
 				'description' => '',
 				'show_in_rest' => 0,
-				'modified' => 1656570003,
 			));
 
 			acf_add_local_field_group(array(

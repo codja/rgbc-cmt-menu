@@ -29,7 +29,7 @@ class Setup {
 	}
 
 	public function enqueue_front() {
-		$menu_id        = Menu::instance()->get_menu_id();
+		$menu_id        = Menu::get_menu_id();
 		$is_enable_menu = get_field( 'rgbc_menu_enable', "menu_$menu_id" );
 
 		if ( ! $is_enable_menu ) {

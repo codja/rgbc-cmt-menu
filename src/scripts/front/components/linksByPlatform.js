@@ -1,24 +1,26 @@
 export default () => {
-	const container = document.querySelector( '.rgbcode-menu-platform-urls' );
+	const containers = document.querySelectorAll(
+		'.rgbcode-menu-platform-urls'
+	);
 
-	if ( ! container ) {
+	if ( ! containers ) {
 		return null;
 	}
 
-	const androidElement = document.querySelector(
+	const androidElements = document.querySelectorAll(
 		'.rgbcode-menu-platform-urls__items [data-platform="android"]'
 	);
-	const iosElement = document.querySelector(
+	const iosElements = document.querySelectorAll(
 		'.rgbcode-menu-platform-urls__items [data-platform="ios"]'
 	);
-	const winElement = document.querySelector(
+	const winElements = document.querySelectorAll(
 		'.rgbcode-menu-platform-urls__items [data-platform="win"]'
 	);
-	const macElement = document.querySelector(
+	const macElements = document.querySelectorAll(
 		'.rgbcode-menu-platform-urls__items [data-platform="mac"]'
 	);
 
-	let currentElement;
+	let currentElements;
 
 	const ua = navigator.userAgent.toLowerCase();
 
@@ -28,22 +30,26 @@ export default () => {
 	const isMac = ua.match( /(macintosh|macintel|macppc|mac68k|macos)/i );
 
 	if ( isAndroid ) {
-		currentElement = androidElement;
+		currentElements = androidElements;
 	} else if ( isIOS ) {
-		currentElement = iosElement;
+		currentElements = iosElements;
 	} else if ( isWin ) {
-		currentElement = winElement;
+		currentElements = winElements;
 	} else if ( isMac ) {
-		currentElement = macElement;
+		currentElements = macElements;
 	} else if ( window.screen.width >= 1024 ) {
-		currentElement = winElement;
+		currentElements = winElements;
 	} else {
-		currentElement = androidElement;
+		currentElements = androidElements;
 	}
 
-	if ( currentElement ) {
-		currentElement.classList.remove( 'rgbcode-menu-platform-urls__hidden' );
+	if ( currentElements ) {
+		currentElements.forEach( ( item ) => {
+			item.classList.remove( 'rgbcode-menu-platform-urls__hidden' );
+		} );
 	} else {
-		container.classList.add( 'rgbcode-menu-platform-urls__hidden' );
+		containers.forEach( ( item ) => {
+			item.classList.add( 'rgbcode-menu-platform-urls__hidden' );
+		} );
 	}
 };

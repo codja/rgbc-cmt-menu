@@ -3,6 +3,7 @@
 namespace Rgbcode_menu\classes\menu;
 
 use Rgbcode_menu\traits\Singleton;
+use function Rgbcode_menu\get_urls_by_platform_data;
 
 class Menu {
 
@@ -20,7 +21,7 @@ class Menu {
 	}
 
 	public function init_menu() {
-		$menu_id = $this->get_menu_id();
+		$menu_id = self::get_menu_id();
 
 		if ( ! $menu_id ) {
 			return false;
@@ -126,23 +127,13 @@ class Menu {
 						<?php endif; ?>
 
 						<?php
-						$urls_title   = get_field( 'rgbc_menu_open_urls_title', "menu_$menu_id" );
-						$urls_ios     = get_field( 'rgbc_menu_open_urls_ios', "menu_$menu_id" );
-						$urls_android = get_field( 'rgbc_menu_open_urls_android', "menu_$menu_id" );
-						$urls_mac     = get_field( 'rgbc_menu_open_urls_mac', "menu_$menu_id" );
-						$urls_win     = get_field( 'rgbc_menu_open_urls_win', "menu_$menu_id" );
+						$urls_by_platform_data            = get_urls_by_platform_data( self::get_menu_id() );
+						$urls_by_platform_data['classes'] = [ 'rgbcode-menu-only-mobile' ];
 
 						load_template(
 							RGBCODE_MENU_PLUGIN_DIR . 'templates/platform-urls.php',
 							false,
-							[
-								'title'   => $urls_title,
-								'ios'     => $urls_ios,
-								'android' => $urls_android,
-								'mac'     => $urls_mac,
-								'win'     => $urls_win,
-								'classes' => [ 'rgbcode-menu-only-mobile' ],
-							]
+							$urls_by_platform_data
 						);
 						?>
 					</div>
@@ -168,7 +159,7 @@ class Menu {
 		return wp_get_attachment_image_src( $custom_logo_id, 'full' );
 	}
 
-	public function get_menu_id(): ?int {
+	public static function get_menu_id(): ?int {
 		$locations = get_nav_menu_locations();
 		return $locations[ self::LOCATION_NAME ];
 	}
