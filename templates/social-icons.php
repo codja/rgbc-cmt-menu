@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @var array $args
+ */
+
 $title_  = $args['title'] ?? '';
 $items   = $args['items'] ?? [];
 $classes = $args['classes'] ?? [];

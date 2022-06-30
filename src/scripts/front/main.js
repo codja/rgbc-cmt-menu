@@ -1,6 +1,7 @@
 import { initLinks } from './components/links';
-import { initVideo } from "./components/modalVideo";
-import { initMobileMenu } from "./components/mobileMenu";
+import { initVideo } from './components/modalVideo';
+import { initMobileMenu } from './components/mobileMenu';
+import linksByPlatform from './components/linksByPlatform.js';
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	if ( ! document.getElementById( 'rgbcode-menu-header' ) ) {
@@ -9,4 +10,5 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	initMobileMenu();
 	initLinks();
 	initVideo();
+	linksByPlatform();
 } );
