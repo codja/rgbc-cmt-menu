@@ -8,7 +8,7 @@
 		font-size: 14px;
 	}
 
-	@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+	@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 		width: 275px;
 		margin: 7vh 0;
 		flex-direction: column;
@@ -47,7 +47,7 @@
 			color: #fff;
 			text-transform: uppercase;
 
-			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 				color: #000;
 				font-weight: bold;
 				padding-bottom: 1em;
@@ -56,7 +56,7 @@
 			&:hover {
 				color: #fff;
 
-				@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+				@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 					color: #000;
 				}
 			}
@@ -89,7 +89,7 @@
 					padding-inline-end: 35px;
 				}
 
-				@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+				@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 					padding-inline-start: 0;
 				}
 
@@ -111,7 +111,7 @@
 
 					color: #fff;
 
-					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+					@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 						color: #000;
 						top: 0;
 					}
@@ -119,7 +119,7 @@
 
 				&.lang_bar_item {
 
-					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+					@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 						margin-top: 3em;
 						max-width: 70%;
 					}
@@ -148,7 +148,7 @@
 
 					&.lang_bar_active {
 
-						@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+						@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 							position: absolute;
 							top: -15px;
 							z-index: 9;
@@ -183,7 +183,7 @@
 
 				& > .rgbcode-menu__second-lvl-menu {
 
-					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+					@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 						position: absolute;
 						top: 2em;
 
@@ -198,7 +198,7 @@
 
 			&.rgbcode-menu-active:not(.lang_bar_item) {
 
-				@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+				@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -213,14 +213,14 @@
 
 				&::after {
 
-					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+					@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 						display: none;
 					}
 				}
 
 				& .rgbcode-menu__second-lvl-menu {
 
-					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+					@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 						max-height: 70%;
 						flex-direction: column;
 						overflow-y: scroll;
@@ -228,7 +228,7 @@
 
 					&_no-mask {
 
-						@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+						@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 							mask-image: initial;
 						}
 					}
@@ -236,7 +236,7 @@
 
 				& > .rgbcode-menu__third-lvl-btn {
 
-					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+					@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 						position: absolute;
 						bottom: 30px;
 						right: 50px;
@@ -299,7 +299,7 @@
 
 				&:not(.lang_bar_item) {
 
-					@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+					@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 						margin-bottom: 1.5em;
 					}
 				}
@@ -363,7 +363,7 @@
 				margin-top: 60px;
 			}
 
-			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 				position: absolute;
 				bottom: 14.8vh;
 				right: 50px;
@@ -423,7 +423,7 @@
 
 		&-desktop {
 
-			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 				display: none;
 			}
 		}
