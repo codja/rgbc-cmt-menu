@@ -6,13 +6,13 @@
 	z-index: 999;
 	background-color: #0063ff;
 
-	@include media_min( map-get( $breaks, 'more_then_desktop_sm' ) ) {
+	@include media_min(map-get($breaks, 'desktop_sm')) {
 		height: 85px;
 	}
 
 	&__back {
 		position: relative;
-		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+		@include media_max(map-get($breaks, 'less_then_desktop_sm')) {
 			&::before {
 				content: '';
 				position: absolute;
@@ -37,7 +37,7 @@
 		margin: 0 auto;
 		display: flex;
 
-		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+		@include media_max(map-get($breaks, 'less_then_desktop_sm')) {
 			padding-bottom: 15px;
 			justify-content: space-between;
 		}
@@ -45,14 +45,14 @@
 
 	&__wrapper {
 
-		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+		@include media_max(map-get($breaks, 'less_then_desktop_sm')) {
 			display: flex;
 			width: 50%;
 			justify-content: space-between;
 			align-items: center;
 		}
 
-		@include media_max( map-get( $breaks, 'mobile' ) ) {
+		@include media_max(map-get($breaks, 'mobile')) {
 			width: 70%;
 		}
 	}
@@ -62,7 +62,7 @@
 		margin-top: 4px;
 		display: block;
 
-		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+		@include media_max(map-get($breaks, 'less_then_desktop_sm')) {
 			margin-top: 0;
 			width: 26px;
 			height: 31px;
@@ -71,11 +71,11 @@
 
 	&__menu {
 
-		@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+		@include media_min(map-get($breaks, 'desktop_sm')) {
 			flex-grow: 2;
 		}
 
-		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+		@include media_max(map-get($breaks, 'less_then_desktop_sm')) {
 			//display: none;
 
 			position: absolute;
@@ -90,13 +90,13 @@
 			transition: left .7s linear;
 		}
 
-		@include media_max( map-get( $breaks, 'mobile' ) ) {
+		@include media_max(map-get($breaks, 'mobile')) {
 			width: 90vw;
 		}
 
 		&-wrap {
 
-			@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+			@include media_max(map-get($breaks, 'less_then_desktop_sm')) {
 				padding-inline-start: 40px;
 			}
 
@@ -108,7 +108,7 @@
 		padding-bottom: 1em;
 		padding-inline: 1em;
 
-		@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+		@include media_min(map-get($breaks, 'desktop_sm')) {
 			display: none;
 		}
 	}
@@ -127,7 +127,7 @@
 
 		border: none;
 
-		@include media_min( map-get( $breaks, 'desktop_sm' ) ) {
+		@include media_min(map-get($breaks, 'desktop_sm')) {
 			display: none;
 		}
 
@@ -169,7 +169,7 @@
 	position: fixed;
 	top: 32px;
 
-	@include media_max(map-get($breaks, 'desktop_sm')) {
+	@include media_max(map-get($breaks, 'less_then_desktop_sm')) {
 		.rgbcode-menu-header__menu {
 			padding-bottom: 32px;
 		}
