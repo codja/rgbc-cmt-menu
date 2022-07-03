@@ -4,6 +4,7 @@ namespace Rgbcode_menu\classes\menu;
 
 use Rgbcode_menu\traits\Singleton;
 use function Rgbcode_menu\get_urls_by_platform_data;
+use function Rgbcode_menu\get_browser;
 
 class Menu {
 
@@ -49,7 +50,7 @@ class Menu {
 					<a class="rgbcode-menu-header__logo" href="<?php echo esc_url( home_url() ); ?>">
 						<picture>
 							<source
-								srcset="<?php echo esc_url( $mobile_image['url'] ); ?>" media="(max-width: 1280px)">
+								srcset="<?php echo esc_url( $mobile_image['url'] ); ?>" media="(max-width: 1279px)">
 							<img src="<?php echo esc_url( reset( $image ) ); ?>"
 								width="<?php echo esc_attr( $image[1] ); ?>"
 								height="<?php echo esc_attr( $image[2] ); ?>" alt="cmtrading">
@@ -116,8 +117,10 @@ class Menu {
 						?>
 
 						<?php
-						$button = get_field( 'rgbc_menu_open_button', "menu_$menu_id" );
-						if ( $button ) :
+						$button    = get_field( 'rgbc_menu_open_button', "menu_$menu_id" );
+						$is_mobile = get_browser()['is_mobile'];
+
+						if ( $button && $is_mobile ) :
 							?>
 							<a
 								class="rgbcode-menu-header__open-btn rgbcode-menu-button rgbcode-menu-button_blue rgbcode-menu-only-mobile"
