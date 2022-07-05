@@ -94,6 +94,10 @@
 			width: 90vw;
 		}
 
+		@media screen and ( max-height: 610px ) {
+			overflow-y: scroll;
+		}
+
 		&-wrap {
 
 			@include media_max(map-get($breaks, 'less_then_desktop_sm')) {
