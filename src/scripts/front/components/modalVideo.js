@@ -40,6 +40,11 @@ const createIframe = ( id ) => {
 
 const setupVideo = ( video ) => {
 	let media = video.querySelector( '.rgbcode-menu-video__media' );
+
+	if (!media || !media.src) {
+		return null;
+	}
+
 	let id = parseMediaURL( media );
 	let iframe = createIframe( id );
 
