@@ -49,5 +49,15 @@ class Setup {
 			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/js/front/rgbcode-menu.min.js' ),
 			true
 		);
+
+		// Localize our ajax
+		wp_localize_script(
+			'rgbcode_menu_script',
+			'rgbcode_menu_ajax',
+			[
+				'url'   => admin_url( 'admin-ajax.php' ),
+				'nonce' => wp_create_nonce( 'rgbcode-menu-nonce' ),
+			]
+		);
 	}
 }

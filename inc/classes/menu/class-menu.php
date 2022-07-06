@@ -2,7 +2,6 @@
 
 namespace Rgbcode_menu\classes\menu;
 
-use Mobile_Detect;
 use Rgbcode_menu\traits\Singleton;
 use function Rgbcode_menu\get_urls_by_platform_data;
 
@@ -119,16 +118,15 @@ class Menu {
 						<?php
 						$button = get_field( 'rgbc_menu_open_button', "menu_$menu_id" );
 
-						$detect    = new Mobile_Detect();
-						$is_mobile = $detect->isMobile();
-
-						if ( $button && $is_mobile ) :
+						if ( $button ) :
 							?>
 							<a
-								class="rgbcode-menu-header__open-btn rgbcode-menu-button rgbcode-menu-button_blue rgbcode-menu-only-mobile"
+								data-rgbcode-menu-dc-entity="is-mobile"
+								class="rgbcode-menu-header__open-btn rgbcode-menu-button rgbcode-menu-button_blue rgbcode-menu-only-mobile rgbcode-menu-hidden"
 								href="<?php echo esc_url( $button['url'] ); ?>"
-								target="<?php echo esc_attr( $button['target'] ); ?>"
-							><?php echo esc_html( $button['title'] ); ?></a>
+								target="<?php echo esc_attr( $button['target'] ); ?>">
+								<?php echo esc_html( $button['title'] ); ?>
+							</a>
 						<?php endif; ?>
 
 						<?php
