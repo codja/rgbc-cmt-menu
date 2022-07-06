@@ -113,8 +113,10 @@ export function initLinks() {
 					'.rgbcode-menu__first-lvl-link.rgbcode-menu-header__back'
 				);
 
-				if ( menuItem ) {
-					hideActiveMenu( item );
+				if (menuItem &&
+					e.target.closest('.rgbcode-menu-header__back')
+				) {
+					hideActiveMenu(item);
 				}
 			}
 		} );
