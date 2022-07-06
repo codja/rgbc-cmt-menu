@@ -94,7 +94,7 @@
 			width: 90vw;
 		}
 
-		@media screen and ( max-height: 610px ) {
+		@media screen and ( max-width: map_get($breaks, 'desktop_sm') ) and ( max-height: 610px ) {
 			overflow-y: scroll;
 		}
 
