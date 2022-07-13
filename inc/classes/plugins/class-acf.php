@@ -720,21 +720,6 @@ class ACF {
 						),
 					),
 					array(
-						'key' => 'field_6294c0f2a324f',
-						'label' => 'Button',
-						'name' => 'rgbc_menu_open_button',
-						'type' => 'link',
-						'instructions' => '',
-						'required' => 0,
-						'conditional_logic' => 0,
-						'wrapper' => array(
-							'width' => '',
-							'class' => '',
-							'id' => '',
-						),
-						'return_format' => 'array',
-					),
-					array(
 						'key' => 'field_62b4785a8b80c',
 						'label' => 'Urls title',
 						'name' => 'rgbc_menu_open_urls_title',

@@ -52,9 +52,6 @@
 			align-items: center;
 		}
 
-		@include media_max(map-get($breaks, 'mobile')) {
-			width: 70%;
-		}
 	}
 
 	&__logo {
@@ -114,6 +111,7 @@
 	}
 
 	&__open-btn {
+		display: inline-block;
 		max-width: 37%;
 		margin-bottom: 2vh;
 		text-align: center;

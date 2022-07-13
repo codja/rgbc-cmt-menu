@@ -113,23 +113,9 @@ class Menu {
 							</div>
 							<?php
 						endif;
-						?>
 
-						<?php
-						$button = get_field( 'rgbc_menu_open_button', "menu_$menu_id" );
+						echo wp_kses_post( apply_filters( 'rgbc_menu_header_after_social', '' ) );
 
-						if ( $button ) :
-							?>
-							<a
-								data-rgbcode-menu-dc-entity="is-mobile"
-								class="rgbcode-menu-header__open-btn rgbcode-menu-button rgbcode-menu-button_blue rgbcode-menu-only-mobile rgbcode-menu-hidden"
-								href="<?php echo esc_url( $button['url'] ); ?>"
-								target="<?php echo esc_attr( $button['target'] ); ?>">
-								<?php echo esc_html( $button['title'] ); ?>
-							</a>
-						<?php endif; ?>
-
-						<?php
 						$urls_by_platform_data            = get_urls_by_platform_data( self::get_menu_id() );
 						$urls_by_platform_data['classes'] = [ 'rgbcode-menu-only-mobile' ];
 
