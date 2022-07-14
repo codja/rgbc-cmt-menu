@@ -95,7 +95,7 @@
 
 			@include media_max(map-get($breaks, 'less_then_desktop_sm')) {
 				padding-inline-start: 40px;
-				padding-bottom: 30px;
+				padding-bottom: 60px;
 			}
 
 		}
