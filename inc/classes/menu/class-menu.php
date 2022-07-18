@@ -68,7 +68,9 @@ class Menu {
 					$mobile_opened_logo = get_field( 'rgbc_menu_mobile_opened_logo', "menu_$menu_id" );
 					if ( $mobile_opened_logo ) :
 						?>
-					<a href="<?php echo get_site_url() ?>"><img class="rgbcode-menu-header__open-logo" src="<?php echo esc_url( $mobile_opened_logo['url'] ); ?>" width="230" alt="cmtrading"></a>
+					<a href="<?php echo esc_url( get_site_url() ); ?>">
+						<img class="rgbcode-menu-header__open-logo" src="<?php echo esc_url( $mobile_opened_logo['url'] ); ?>" width="230" alt="cmtrading">
+					</a>
 					<?php endif; ?>
 
 					<button class="rgbcode-menu-header__close"></button>
@@ -97,8 +99,9 @@ class Menu {
 							foreach ( $social_btns as $social_btn ) :
 								?>
 								<a
+									target="<?php echo esc_attr( $social_btn['link']['target'] ); ?>"
 									class="rgbcode-menu-social__item"
-									href="<?php echo esc_url( $social_btn['link'] ); ?>"
+									href="<?php echo esc_url( $social_btn['link']['url'] ); ?>"
 								>
 									<img
 										class="rgbcode-menu-social__img"
@@ -124,7 +127,7 @@ class Menu {
 							false,
 							$urls_by_platform_data
 						);
-						?>
+		?>
 					</div>
 				</nav>
 
