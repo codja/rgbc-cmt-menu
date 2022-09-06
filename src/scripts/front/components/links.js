@@ -9,7 +9,7 @@ const langBar = document.querySelector(
 );
 
 export function detectTablet() {
-	return window.innerWidth <= 1280;
+	return window.innerWidth < 1280;
 }
 
 export const deselectLinks = () => {
