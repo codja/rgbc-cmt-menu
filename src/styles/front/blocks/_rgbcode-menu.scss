@@ -2,6 +2,7 @@
 	display: flex;
 	font-size: 16px;
 	justify-content: space-between;
+	align-items: center;
 	//gap: 1em;
 
 	@include media_max( map-get( $breaks, 'desktop' ) ) {
