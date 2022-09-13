@@ -2,6 +2,13 @@ export default () => {
 	let pandaForexHeaderMenuBtn = window.rgbcode_menu_ajax.panda_forex_header_menu_button ?? '';
 	pandaForexHeaderMenuBtn = JSON.parse(pandaForexHeaderMenuBtn);
 
+	if (!pandaForexHeaderMenuBtn) {
+		pandaForexHeaderMenuBtn = {
+			title: 'Trading Room',
+			url: '/webtrader',
+		};
+	}
+
 	const observer = new MutationObserver(function (mutations_list) {
 		mutations_list.forEach(function (mutation) {
 			mutation.addedNodes.forEach(function (node) {
@@ -20,16 +27,9 @@ export default () => {
 
 				stopObserve();
 
-				const textButton = button.innerText;
-
-				if (textButton !== pandaForexHeaderMenuBtn.title) {
-					let title = pandaForexHeaderMenuBtn.title;
-					title = title ? title : 'Trading Room';
-					button.innerText = title;
-
-					let url = pandaForexHeaderMenuBtn.url;
-					url = url ? url : '/webtrader';
-					button.setAttribute('data-panda-forex-header-button-link', url);
+				if (button.innerText !== pandaForexHeaderMenuBtn.title) {
+					button.innerText = pandaForexHeaderMenuBtn.title;
+					button.setAttribute('data-panda-forex-header-button-link', pandaForexHeaderMenuBtn.url);
 
 					//remove all events
 					button.outerHTML = button.outerHTML;
