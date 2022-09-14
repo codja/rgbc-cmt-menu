@@ -2,8 +2,11 @@
 	display: flex;
 	font-size: 16px;
 	justify-content: space-between;
-	align-items: center;
 	//gap: 1em;
+
+	panda-forex-deposit-credit {
+		margin-top: 5px;
+	}
 
 	@include media_max( map-get( $breaks, 'desktop' ) ) {
 		font-size: 14px;
