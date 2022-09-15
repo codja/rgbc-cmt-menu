@@ -29,6 +29,7 @@
 		"gulp-sass-glob": "^1.1.0",
 		"gulp-sftp-up4": "^0.1.8",
 		"gulp-sourcemaps": "^3.0.0",
+		"node-sass": "^7.0.3",
 		"stylelint": "^13.8.0",
 		"stylelint-config-wordpress": "^17.0.0",
 		"webpack-stream": "^6.1.1"

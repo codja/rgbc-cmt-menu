@@ -2,6 +2,8 @@
 
 namespace Rgbcode_menu\classes\menu;
 
+use function Rgbcode_menu\get_urls_by_platform_data;
+
 class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 
 	public $custom_area;
@@ -25,12 +27,9 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 			$t = "\t";
 			$n = "\n";
 		}
-		$indent        = str_repeat( $t, $depth );
-		$display_depth = ( $depth + 1 );
-		$additional    = '';
-		if ( $display_depth === 1 ) {
-			$additional = $this->render_scroll_icon();
-		}
+		$indent     = str_repeat( $t, $depth );
+		$additional = '';
+
 		$output .= "$indent</ul>{$additional}{$n}";
 	}
 
@@ -101,8 +100,10 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		if ( $depth === 2 && in_array( 'rgbcode-menu__last', $item->classes ) ) {
 			$output .= $this->render_custom_button( $item, $n );
 		}
+
 		if ( in_array( 'rgbcode-menu__show_social_icons', $item->classes, true ) ) {
 			ob_start();
+
 			$social_icons_title = get_field( 'rgbc_social_icons_title', $item->menu_item_parent );
 			$items              = $this->get_social_items_data();
 			load_template(
@@ -114,6 +115,24 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 					'classes' => [ 'rgbcode-menu-only-desktop' ],
 				]
 			);
+			$load_template_res = ob_get_clean();
+			$load_template_res = $load_template_res ? $load_template_res : '';
+
+			$output .= $load_template_res . $n;
+		}
+
+		if ( in_array( 'rgbcode-menu__show_urls_by_platform', $item->classes, true ) ) {
+			ob_start();
+
+			$urls_by_platform_data            = get_urls_by_platform_data( Menu::get_menu_id() );
+			$urls_by_platform_data['classes'] = [ 'rgbcode-menu-only-desktop' ];
+
+			load_template(
+				RGBCODE_MENU_PLUGIN_DIR . 'templates/platform-urls.php',
+				false,
+				$urls_by_platform_data
+			);
+
 			$load_template_res = ob_get_clean();
 			$load_template_res = $load_template_res ? $load_template_res : '';
 
@@ -156,10 +175,12 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 
 		//If current element is the last of the siblings, add class
 		//Get the 'last' of the siblings.
-		$last_child           = array_pop( $siblings );
-		$id_field             = $this->db_fields['id'];
-		$is_enable_custom_col = get_field( 'rgbc_menu_custom_area_column', $element->menu_item_parent );
-		$show_social_icons    = get_field( 'rgbc_show_social_icons', $element->menu_item_parent );
+		$last_child            = array_pop( $siblings );
+		$id_field              = $this->db_fields['id'];
+		$is_enable_custom_col  = get_field( 'rgbc_menu_custom_area_column', $element->menu_item_parent );
+		$show_social_icons     = get_field( 'rgbc_show_social_icons', $element->menu_item_parent );
+		$show_urls_by_platform = get_field( 'rgbc_show_urls_by_platform', $element->menu_item_parent );
+
 		if ( $element->$id_field === $last_child->$id_field ) {
 			$classes = empty( $element->classes ) ? array() : (array) $element->classes;
 			if ( $is_enable_custom_col && $depth === 1 ) {
@@ -176,6 +197,10 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 				$classes[] = 'rgbcode-menu__show_social_icons';
 			}
 
+			if ( $show_urls_by_platform ) {
+				$classes[] = 'rgbcode-menu__show_urls_by_platform';
+			}
+
 			$element->classes = $classes;
 		} else {
 			delete_post_meta( $element->ID, 'is_last_column' );
@@ -189,6 +214,9 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 
 		$show_social_icons  = $custom_area_data['rgbc_show_social_icons'];
 		$social_icons_title = $custom_area_data['rgbc_social_icons_title'];
+
+		$show_urls_by_platform = $custom_area_data['rgbc_show_urls_by_platform'];
+
 		ob_start();
 		?>
 		<li class='rgbcode-menu__second-lvl-menu-item rgbcode-menu__editor'>
@@ -231,6 +259,17 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 						'items'   => $items,
 						'classes' => [ 'rgbcode-menu-only-desktop' ],
 					]
+				);
+			}
+
+			if ( $show_urls_by_platform ) {
+				$urls_by_platform_data            = get_urls_by_platform_data( Menu::get_menu_id() );
+				$urls_by_platform_data['classes'] = [ 'rgbcode-menu-only-desktop' ];
+
+				load_template(
+					RGBCODE_MENU_PLUGIN_DIR . 'templates/platform-urls.php',
+					false,
+					$urls_by_platform_data
 				);
 			}
 			?>
@@ -279,23 +318,6 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		$parts = wp_parse_url( esc_url_raw( $url ) );
 		parse_str( $parts['query'], $query );
 		return $query[ $param ];
-	}
-
-	private function render_scroll_icon() {
-		ob_start();
-		?>
-		<div class="rgbcode-menu-scrolldown rgbcode-menu-only-mobile">
-			<div class="rgbcode-menu-scrolldown__btn">
-				<svg width="50px" height="80px" viewbox="0 0 50 80">
-					<path class="first-path"
-						d="M24.752,79.182c-0.397,0-0.752-0.154-1.06-0.463L2.207,57.234c-0.306-0.305-0.458-0.656-0.458-1.057                  s0.152-0.752,0.458-1.059l2.305-2.305c0.309-0.309,0.663-0.461,1.06-0.461c0.398,0,0.752,0.152,1.061,0.461l18.119,18.119                  l18.122-18.119c0.306-0.309,0.657-0.461,1.057-0.461c0.402,0,0.753,0.152,1.059,0.461l2.306,2.305                  c0.308,0.307,0.461,0.658,0.461,1.059s-0.153,0.752-0.461,1.057L25.813,78.719C25.504,79.027,25.15,79.182,24.752,79.182z"/>
-					<path class="second-path"
-					  d="M24.752,58.25c-0.397,0-0.752-0.154-1.06-0.463L2.207,36.303c-0.306-0.304-0.458-0.655-0.458-1.057                  c0-0.4,0.152-0.752,0.458-1.058l2.305-2.305c0.309-0.308,0.663-0.461,1.06-0.461c0.398,0,0.752,0.153,1.061,0.461l18.119,18.12                  l18.122-18.12c0.306-0.308,0.657-0.461,1.057-0.461c0.402,0,0.753,0.153,1.059,0.461l2.306,2.305                  c0.308,0.306,0.461,0.657,0.461,1.058c0,0.401-0.153,0.753-0.461,1.057L25.813,57.787C25.504,58.096,25.15,58.25,24.752,58.25z"/>
-				</svg>
-			</div>
-		</div>
-		<?php
-		return ob_get_clean();
 	}
 
 	/**

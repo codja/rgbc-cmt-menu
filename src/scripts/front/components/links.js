@@ -1,65 +1,95 @@
-const firstLvlMenuItems = document.querySelectorAll( '.rgbcode-menu__first-lvl-menu-item' );
-const firstLvlLinks = document.querySelectorAll( '.rgbcode-menu__first-lvl-link' );
-const backBtn = document.querySelector( '.rgbcode-menu-header__back' );
-const langBar = document.querySelector( '.rgbcode-menu__first-lvl-menu-item.lang_bar_item' );
+const firstLvlMenuItems = document.querySelectorAll(
+	'.rgbcode-menu__first-lvl-menu-item'
+);
+const firstLvlLinks = document.querySelectorAll(
+	'.rgbcode-menu__first-lvl-link'
+);
+const langBar = document.querySelector(
+	'.rgbcode-menu__first-lvl-menu-item.lang_bar_item'
+);
 
 export function detectTablet() {
-	return window.innerWidth <= 1280;
+	return window.innerWidth < 1280;
 }
 
 export const deselectLinks = () => {
-	firstLvlMenuItems.forEach( link => {
+	firstLvlMenuItems.forEach( ( link ) => {
 		link.classList.remove( 'rgbcode-menu-active' );
-	} )
-}
+	} );
+};
+
+const hideActiveMenu = ( e ) => {
+	deselectLinks();
+	hideBackBtn();
+	langBarTransformDisable();
+};
 
 export const hideBackBtn = () => {
-	backBtn.classList.remove( 'show' );
-}
+	const menuItems = document.querySelectorAll(
+		'.rgbcode-menu__first-lvl-link'
+	);
 
-const showBackBtn = () => {
-	backBtn.classList.add( 'show' );
-}
+	if ( ! menuItems ) {
+		return null;
+	}
+
+	menuItems.forEach( ( item ) => {
+		item.classList.remove( 'rgbcode-menu-header__back' );
+	} );
+};
+
+const showBackBtn = ( item ) => {
+	const menuItem = item.querySelector( '.rgbcode-menu__first-lvl-link' );
+
+	if ( ! menuItem ) {
+		return null;
+	}
+
+	menuItem.classList.add( 'rgbcode-menu-header__back' );
+};
 
 const langBarTransform = () => {
 	if ( langBar ) {
 		langBar.classList.add( 'lang_bar_active' );
 	}
-}
+};
 
 export const langBarTransformDisable = () => {
 	if ( langBar ) {
 		langBar.classList.remove( 'lang_bar_active' );
 	}
-}
+};
 
 const menuItemsHandler = ( item, add = true ) => {
 	if ( add ) {
 		deselectLinks();
-		item.classList.add( 'rgbcode-menu-active' )
+		item.classList.add( 'rgbcode-menu-active' );
 	} else {
-		item.classList.toggle( 'rgbcode-menu-active' )
+		item.classList.toggle( 'rgbcode-menu-active' );
 	}
 	if ( detectTablet() && ! item.classList.contains( 'lang_bar_item' ) ) {
-		showBackBtn();
+		showBackBtn( item );
 		langBarTransform();
 	}
-}
+};
 
 export function initLinks() {
-	firstLvlLinks.forEach( item => {
-		item.addEventListener('click', (evt) => {
+	firstLvlLinks.forEach( ( item ) => {
+		item.addEventListener( 'click', ( evt ) => {
 			if (
-				detectTablet()
-				&& ! item.parentElement.classList.contains( 'rgbcode-menu-active' )
-				|| item.parentElement.classList.contains( 'lang_bar_item' )
+				( detectTablet() &&
+					! item.parentElement.classList.contains(
+						'rgbcode-menu-active'
+					) ) ||
+				item.parentElement.classList.contains( 'lang_bar_item' ) ||
+				item.closest( '.rgbcode-menu-header__back' )
 			) {
 				evt.preventDefault();
 			}
-		});
+		} );
 	} );
 
-	firstLvlMenuItems.forEach( item => {
+	firstLvlMenuItems.forEach( ( item ) => {
 		item.addEventListener( 'mouseenter', ( e ) => {
 			if ( detectTablet() ) {
 				return;
@@ -68,30 +98,36 @@ export function initLinks() {
 		} );
 
 		item.addEventListener( 'click', ( e ) => {
-			if ( detectTablet() && ( ! item.classList.contains( 'rgbcode-menu-active' ) || item.classList.contains( 'lang_bar_item' ) ) ) {
+			if (
+				detectTablet() &&
+				( ! item.classList.contains( 'rgbcode-menu-active' ) ||
+					item.classList.contains( 'lang_bar_item' ) )
+			) {
 				menuItemsHandler( item, false );
-				const secondMenu = item.querySelector( '.rgbcode-menu__second-lvl-menu' );
-				const isNotHaveScroll = secondMenu.scrollHeight <= secondMenu.clientHeight;
-				if ( isNotHaveScroll ) {
-					secondMenu.classList.add( 'rgbcode-menu__second-lvl-menu_no-mask' );
-					secondMenu.nextElementSibling.classList.add( 'rgbcode-menu-scrolldown_hide' );
+			} else {
+				if ( ! detectTablet() ) {
+					return null;
+				}
+
+				const menuItem = item.querySelector(
+					'.rgbcode-menu__first-lvl-link.rgbcode-menu-header__back'
+				);
+
+				if (menuItem &&
+					e.target.closest('.rgbcode-menu-header__back')
+				) {
+					hideActiveMenu(item);
 				}
 			}
 		} );
 	} );
 
-	backBtn.addEventListener( 'click', () => {
-		deselectLinks();
-		hideBackBtn();
-		langBarTransformDisable()
-	} );
-
-	document.querySelector( '.rgbcode-menu' ).addEventListener( 'mouseleave', ( e ) => {
-		if ( detectTablet() ) {
-			return;
-		}
-		setTimeout( () => {
+	document
+		.querySelector( '.rgbcode-menu' )
+		.addEventListener( 'mouseleave', ( e ) => {
+			if ( detectTablet() ) {
+				return;
+			}
 			deselectLinks();
-		}, 300 );
-	} );
+		} );
 }

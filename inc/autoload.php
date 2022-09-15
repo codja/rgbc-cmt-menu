@@ -2,6 +2,7 @@
 
 namespace Rgbcode_menu;
 
+use Rgbcode_menu\classes\core\Ajax;
 use Rgbcode_menu\classes\core\Error;
 use Rgbcode_menu\classes\core\Setup;
 use Rgbcode_menu\classes\menu\Menu;
@@ -41,6 +42,7 @@ if ( function_exists( '__autoload' ) ) {
 
 // ... and call
 new Setup();
+new Ajax();
 Error::instance();
 ACF::instance();
 Menu::instance();

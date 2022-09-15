@@ -29,7 +29,7 @@ class Setup {
 	}
 
 	public function enqueue_front() {
-		$menu_id        = Menu::instance()->get_menu_id();
+		$menu_id        = Menu::get_menu_id();
 		$is_enable_menu = get_field( 'rgbc_menu_enable', "menu_$menu_id" );
 
 		if ( ! $is_enable_menu ) {
@@ -48,6 +48,18 @@ class Setup {
 			[],
 			filemtime( RGBCODE_MENU_PLUGIN_DIR . 'assets/js/front/rgbcode-menu.min.js' ),
 			true
+		);
+
+		$panda_forex_header_menu_button = get_field( 'panda_forex_header_menu_button', "menu_$menu_id" );
+		// Localize our ajax
+		wp_localize_script(
+			'rgbcode_menu_script',
+			'rgbcode_menu_ajax',
+			[
+				'url'                            => admin_url( 'admin-ajax.php' ),
+				'nonce'                          => wp_create_nonce( 'rgbcode-menu-nonce' ),
+				'panda_forex_header_menu_button' => wp_json_encode( $panda_forex_header_menu_button ),
+			]
 		);
 	}
 }

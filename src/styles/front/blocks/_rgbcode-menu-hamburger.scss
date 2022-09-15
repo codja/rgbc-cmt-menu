@@ -2,15 +2,19 @@
 	display: none;
 	border: none;
 
-	@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+	@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 		display: block;
 	}
 
 	&.active ~ .rgbcode-menu-header__menu {
 		left: 0;
 
-		@include media_max( map-get( $breaks, 'desktop_sm' ) ) {
+		@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
 			box-shadow: 1px -2px 5px 0px #c1c1c1;
+		}
+
+		@media screen and ( max-width: map_get($breaks, 'less_then_desktop_sm') ) and ( max-height: 670px ) {
+			overflow-y: scroll;
 		}
 	}
 

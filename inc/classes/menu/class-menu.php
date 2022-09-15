@@ -3,6 +3,7 @@
 namespace Rgbcode_menu\classes\menu;
 
 use Rgbcode_menu\traits\Singleton;
+use function Rgbcode_menu\get_urls_by_platform_data;
 
 class Menu {
 
@@ -20,7 +21,7 @@ class Menu {
 	}
 
 	public function init_menu() {
-		$menu_id = $this->get_menu_id();
+		$menu_id = self::get_menu_id();
 
 		if ( ! $menu_id ) {
 			return false;
@@ -48,7 +49,7 @@ class Menu {
 					<a class="rgbcode-menu-header__logo" href="<?php echo esc_url( home_url() ); ?>">
 						<picture>
 							<source
-								srcset="<?php echo esc_url( $mobile_image['url'] ); ?>" media="(max-width: 1280px)">
+								srcset="<?php echo esc_url( $mobile_image['url'] ); ?>" media="(max-width: 1279px)">
 							<img src="<?php echo esc_url( reset( $image ) ); ?>"
 								width="<?php echo esc_attr( $image[1] ); ?>"
 								height="<?php echo esc_attr( $image[2] ); ?>" alt="cmtrading">
@@ -67,22 +68,12 @@ class Menu {
 					$mobile_opened_logo = get_field( 'rgbc_menu_mobile_opened_logo', "menu_$menu_id" );
 					if ( $mobile_opened_logo ) :
 						?>
-					<a href="<?php echo get_site_url() ?>"><img class="rgbcode-menu-header__open-logo" src="<?php echo esc_url( $mobile_opened_logo['url'] ); ?>" width="230" alt="cmtrading"></a>
+					<a href="<?php echo esc_url( get_site_url() ); ?>">
+						<img class="rgbcode-menu-header__open-logo" src="<?php echo esc_url( $mobile_opened_logo['url'] ); ?>" width="230" alt="cmtrading">
+					</a>
 					<?php endif; ?>
 
 					<button class="rgbcode-menu-header__close"></button>
-
-					<button class="rgbcode-menu-header__back rgbcode-menu-only-mobile" type="button">
-						<svg width="40px" height="30px" viewBox="0 0 512 512">
-							<path d="M384.834,180.699c-0.698,0-348.733,0-348.733,0l73.326-82.187c4.755-5.33,4.289-13.505-1.041-18.26
-								c-5.328-4.754-13.505-4.29-18.26,1.041l-82.582,92.56c-10.059,11.278-10.058,28.282,0.001,39.557l82.582,92.561
-								c2.556,2.865,6.097,4.323,9.654,4.323c3.064,0,6.139-1.083,8.606-3.282c5.33-4.755,5.795-12.93,1.041-18.26l-73.326-82.188
-								c0,0,348.034,0,348.733,0c55.858,0,101.3,45.444,101.3,101.3s-45.443,101.3-101.3,101.3h-61.58
-								c-7.143,0-12.933,5.791-12.933,12.933c0,7.142,5.79,12.933,12.933,12.933h61.58c70.12,0,127.166-57.046,127.166-127.166
-								C512,237.745,454.954,180.699,384.834,180.699z"/>
-						</svg>
-<!--						<span>--><?php //echo esc_html__( 'Back', 'rgbcode-menu' ); ?><!--</span>-->
-					</button>
 
 					<div class="rgbcode-menu-header__menu-wrap">
 						<?php
@@ -108,8 +99,9 @@ class Menu {
 							foreach ( $social_btns as $social_btn ) :
 								?>
 								<a
+									target="<?php echo esc_attr( $social_btn['link']['target'] ); ?>"
 									class="rgbcode-menu-social__item"
-									href="<?php echo esc_url( $social_btn['link'] ); ?>"
+									href="<?php echo esc_url( $social_btn['link']['url'] ); ?>"
 								>
 									<img
 										class="rgbcode-menu-social__img"
@@ -124,35 +116,18 @@ class Menu {
 							</div>
 							<?php
 						endif;
-						?>
 
-						<?php
-						$button = get_field( 'rgbc_menu_open_button', "menu_$menu_id" );
-						if ( $button ) :
-							?>
-							<a
-								class="rgbcode-menu-header__open-btn rgbcode-menu-button rgbcode-menu-button_blue rgbcode-menu-only-mobile"
-								href="<?php echo esc_url( $button['url'] ); ?>"
-								target="<?php echo esc_attr( $button['target'] ); ?>"
-							><?php echo esc_html( $button['title'] ); ?></a>
-						<?php endif; ?>
+						echo wp_kses_post( apply_filters( 'rgbc_menu_header_after_social', '' ) );
 
-						<?php
-						$urls_title   = get_field( 'rgbc_menu_open_urls_title', "menu_$menu_id" );
-						$urls_desktop = get_field( 'rgbc_menu_open_urls_desktop', "menu_$menu_id" );
-						$urls_mobile  = get_field( 'rgbc_menu_open_urls_mobile', "menu_$menu_id" );
+						$urls_by_platform_data            = get_urls_by_platform_data( self::get_menu_id() );
+						$urls_by_platform_data['classes'] = [ 'rgbcode-menu-only-mobile' ];
 
 						load_template(
 							RGBCODE_MENU_PLUGIN_DIR . 'templates/platform-urls.php',
 							false,
-							[
-								'title'         => $urls_title,
-								'desktop_items' => $urls_desktop,
-								'mobile_items'  => $urls_mobile,
-								'classes'       => [ 'rgbcode-menu-only-mobile' ],
-							]
+							$urls_by_platform_data
 						);
-						?>
+		?>
 					</div>
 				</nav>
 
@@ -176,7 +151,7 @@ class Menu {
 		return wp_get_attachment_image_src( $custom_logo_id, 'full' );
 	}
 
-	public function get_menu_id(): ?int {
+	public static function get_menu_id(): ?int {
 		$locations = get_nav_menu_locations();
 		return $locations[ self::LOCATION_NAME ];
 	}

@@ -18,7 +18,7 @@ const parseMediaURL = ( media ) => {
 	let url = media.src;
 	let match = url.match( regexp );
 
-	return match[1];
+	return match ? match[1] : false;
 }
 
 const generateURL = ( id ) => {
@@ -40,7 +40,17 @@ const createIframe = ( id ) => {
 
 const setupVideo = ( video ) => {
 	let media = video.querySelector( '.rgbcode-menu-video__media' );
+
+	if (!media || !media.src) {
+		return null;
+	}
+
 	let id = parseMediaURL( media );
+
+	if (id === false) {
+		return null;
+	}
+
 	let iframe = createIframe( id );
 
 	video.addEventListener( 'click', () => {

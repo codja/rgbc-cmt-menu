@@ -21,4 +21,18 @@
 		align-items: center;
 		margin-top: 10px;
 	}
+
+	&__hidden {
+		display: none;
+	}
+
+	&.rgbcode-menu-only-desktop {
+		.rgbcode-menu-platform-urls {
+			&__title {
+				font-size: 100%;
+			}
+		}
+
+		margin-top: 10px;
+	}
 }

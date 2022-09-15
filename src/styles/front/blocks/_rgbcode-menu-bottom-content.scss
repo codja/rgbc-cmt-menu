@@ -10,9 +10,14 @@
 
 	&__items {
 		display: flex;
-		flex-wrap: wrap;
 		justify-content: flex-start;
 		gap: 5px;
+	}
+
+	&__item {
+		width: 30px;
+		height: 30px;
+		flex-shrink: 0;
 	}
 
 	&__img {

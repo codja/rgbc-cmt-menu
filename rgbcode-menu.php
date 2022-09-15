@@ -31,6 +31,9 @@ define( 'RGBCODE_MENU_VERSION', '1.0.6' );
 define( 'RGBCODE_MENU_IMAGES', RGBCODE_MENU_PLUGIN_URL . 'assets/images' );
 define( 'RGBCODE_MENU_IMAGES_DIR', RGBCODE_MENU_PLUGIN_DIR . 'assets/images' );
 
+if ( ! class_exists( 'Mobile_Detect' ) ) {
+	require_once RGBCODE_MENU_PLUGIN_DIR . 'inc/libs/Mobile-Detect-2.8.39/Mobile_Detect.php';
+}
 require_once RGBCODE_MENU_PLUGIN_DIR . 'inc/autoload.php';
 require_once RGBCODE_MENU_PLUGIN_DIR . 'inc/functions.php';
 
