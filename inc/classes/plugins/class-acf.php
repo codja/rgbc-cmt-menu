@@ -997,37 +997,6 @@ class ACF {
 									),
 								),
 							),
-							array(
-								'key'               => 'field_63206c898d485',
-								'label'             => 'Panda Forex',
-								'name'              => '',
-								'type'              => 'tab',
-								'instructions'      => '',
-								'required'          => 0,
-								'conditional_logic' => 0,
-								'wrapper'           => array(
-									'width' => '',
-									'class' => '',
-									'id'    => '',
-								),
-								'placement'         => 'top',
-								'endpoint'          => 0,
-							),
-							array(
-								'key'               => 'field_63206ddd8d487',
-								'label'             => 'Header menu button',
-								'name'              => 'panda_forex_header_menu_button',
-								'type'              => 'link',
-								'instructions'      => '',
-								'required'          => 0,
-								'conditional_logic' => 0,
-								'wrapper'           => array(
-									'width' => '',
-									'class' => '',
-									'id'    => '',
-								),
-								'return_format'     => 'array',
-							),
 						),
 						'location'              => array(
 							array(

@@ -50,15 +50,13 @@ class Setup {
 			true
 		);
 
-		$panda_forex_header_menu_button = get_field( 'panda_forex_header_menu_button', "menu_$menu_id" );
 		// Localize our ajax
 		wp_localize_script(
 			'rgbcode_menu_script',
 			'rgbcode_menu_ajax',
 			[
-				'url'                            => admin_url( 'admin-ajax.php' ),
-				'nonce'                          => wp_create_nonce( 'rgbcode-menu-nonce' ),
-				'panda_forex_header_menu_button' => wp_json_encode( $panda_forex_header_menu_button ),
+				'url'   => admin_url( 'admin-ajax.php' ),
+				'nonce' => wp_create_nonce( 'rgbcode-menu-nonce' ),
 			]
 		);
 	}
