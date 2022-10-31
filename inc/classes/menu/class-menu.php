@@ -42,7 +42,7 @@ class Menu {
 
 				<div class="rgbcode-menu-header__wrapper">
 					<?php
-					$image        = $this->get_logo();
+					$image        = apply_filters( 'rgbc_menu_desktop_logo', $this->get_logo() );
 					$mobile_image = get_field( 'rgbc_menu_mobile_logo', "menu_$menu_id" );
 					if ( $image ) :
 						?>
