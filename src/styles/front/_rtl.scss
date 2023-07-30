@@ -100,8 +100,12 @@
 		}
 	}
 
-	.rgbcode-menu-hamburger[type=button].active ~ .rgbcode-menu-header__menu {
-		right: 0;
+	.rgbcode-menu-hamburger[type=button] {
+		order: initial;
+
+		&.active ~ .rgbcode-menu-header__menu {
+			right: 0;
+		}
 	}
 
 }
