@@ -48,7 +48,7 @@
 	&__first-lvl {
 
 		&-link {
-			color: #fff;
+			color: #fff !important;
 			text-transform: uppercase;
 
 			@include media_max( map-get( $breaks, 'less_then_desktop_sm' ) ) {
