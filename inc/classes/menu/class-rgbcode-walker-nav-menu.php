@@ -140,7 +140,7 @@ class Rgbcode_Walker_Nav_Menu extends \Walker_Nav_Menu {
 		}
 	}
 
-	public function display_element( $element, &$children_elements, $max_depth, $depth = 0, $args, &$output ) {
+	public function display_element( $element, &$children_elements, $max_depth, $depth, $args, &$output ) {
 		// We don't want to do anything at the 'top level'.
 		if ( 0 === $depth ) {
 			$reverse_block = get_field( 'rgbc_menu_reverse_block', $element->ID );
